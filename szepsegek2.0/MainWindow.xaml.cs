@@ -101,7 +101,7 @@ namespace szepsegek2._0
                     MySqlConnection connection = new MySqlConnection(connectionString);
                     connection.Open();
 
-                    MySqlCommand command = new MySqlCommand("INSERT INTO foglalas (SzolgaltatasID, DolozoID, Ido) VALUES (@szolgaltatasID, @dolgozoID, @SelectedDateTime)", connection);
+                    MySqlCommand command = new MySqlCommand("INSERT INTO foglalas (SzolgaltatasID, DolgozoID, Ido) VALUES (@szolgaltatasID, @dolgozoID, @SelectedDateTime)", connection);
 
                     command.Parameters.AddWithValue("@szolgaltatasID", int.Parse(szolgaltatasID));
                     command.Parameters.AddWithValue("@dolgozoID", int.Parse(dolgozoID));
