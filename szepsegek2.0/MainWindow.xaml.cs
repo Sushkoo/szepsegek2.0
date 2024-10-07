@@ -76,9 +76,14 @@ namespace szepsegek2._0
                 MessageBox.Show("Válaszd ki az időpontot.");
             }
 
-            if (cbxDolgozo.HasItems)
+            if (cbxDolgozo == null)
             {
-                
+                MessageBox.Show("Válaszd ki a munkádosat!");
+            }
+
+            if (cbxSzolgaltatasok == null)
+            {
+                MessageBox.Show("Válaszd ki a szolgáltatást!");
             }
         }
     }
