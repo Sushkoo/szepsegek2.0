@@ -10,7 +10,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
-using MySqlConnector;
 
 namespace szepsegek2._0
 {
