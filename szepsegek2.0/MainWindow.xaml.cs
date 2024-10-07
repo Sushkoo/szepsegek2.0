@@ -70,7 +70,6 @@ namespace szepsegek2._0
 
             string queryDolgozoID = "SElECT DolgozoID from dolgozok WHERE DolgozoKeresztNev = @selectedValue";
             MySqlCommand commandDolgozoID = new MySqlCommand(queryDolgozoID, connectionSzolgaltatas);
-            commandSzolgaltatas.Parameters.AddWithValue("@selectedValue", selectedValue);
             MySqlDataReader readerDolgozoID = commandSzolgaltatas.ExecuteReader();
             while (readerDolgozoID.Read())
             {
