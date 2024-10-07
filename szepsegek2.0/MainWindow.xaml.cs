@@ -1,7 +1,4 @@
-﻿using MySqlConnector;
-using System.Data;
-using System.Data.SqlClient;
-using System.Text;
+﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -55,6 +52,11 @@ namespace szepsegek2._0
             readerDolgozo.Close();
             readerSzolgaltatas.Close();
             connection.Close();
+        }
+
+        private void btnFoglal_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
