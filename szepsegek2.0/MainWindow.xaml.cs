@@ -95,5 +95,6 @@ namespace szepsegek2._0
                 MessageBox.Show("Válaszd ki a szolgáltatást!");
             }
         }
+
     }
 }
