@@ -19,11 +19,9 @@ namespace szepsegek2._0
     public partial class MainWindow : Window
     {
         static string connectionString = "Server=localhost; Database=szepsegek2; UserId=root; Password=; Allow User Variables=true";
-        MySqlConnection connection = new MySqlConnection(connectionString);
         public MainWindow()
         {
             InitializeComponent();
-            connection.Open();
             LoadFromDB();
         }
 
@@ -33,27 +31,29 @@ namespace szepsegek2._0
             // Replace with your query
             string queryDolgozo = "SELECT DISTINCT DolgozoKeresztNev FROM dolgozok";
 
-            MySqlCommand commandDolgozo = new MySqlCommand(queryDolgozo, connection);
+            MySqlConnection connectionDolgozo = new MySqlConnection(connectionString);
+            connectionDolgozo.Open();
+            MySqlCommand commandDolgozo = new MySqlCommand(queryDolgozo, connectionDolgozo);
             MySqlDataReader readerDolgozo = commandDolgozo.ExecuteReader();
 
             while (readerDolgozo.Read())
             {
                 cbxDolgozo.Items.Add(readerDolgozo["DolgozoKeresztNev"].ToString());
             }
+            readerDolgozo.Close();
+            connectionDolgozo.Close();
 
             string querySzolgaltatas = "SELECT szolgaltatasok.SzolgaltatasKategoria FROM szolgaltatasok INNER JOIN szolgaltatasok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID";
-
-            MySqlCommand commandSzolgaltatas = new MySqlCommand(querySzolgaltatas, connection);
+            MySqlConnection connectionSzolgaltatas = new MySqlConnection(connectionString);
+            MySqlCommand commandSzolgaltatas = new MySqlCommand(querySzolgaltatas, connectionSzolgaltatas);
             MySqlDataReader readerSzolgaltatas = commandSzolgaltatas.ExecuteReader();
 
             while (readerSzolgaltatas.Read())
             {
                 cbxSzolgaltatasok.Items.Add(readerSzolgaltatas["SzolgaltatasKategoria"].ToString());
             }
-
-            readerDolgozo.Close();
             readerSzolgaltatas.Close();
-            connection.Close();
+            connectionSzolgaltatas.Close();
         }
 
         private void btnFoglal_Click(object sender, RoutedEventArgs e)
