@@ -60,30 +60,21 @@ namespace szepsegek2._0
         private void btnFoglal_Click(object sender, RoutedEventArgs e)
         {
             DateTime? selectedDate = dtpIdopont.SelectedDate;
+  
             if (selectedDate.HasValue)
             {
-                if (selectedDate.Value.Date < DateTime.Today)
+                if (cbxDolgozo.SelectedItem == null || cbxSzolgaltatasok.SelectedItem == null || selectedDate.Value.Date < DateTime.Today)
                 {
-                    MessageBox.Show("A válaszott időpont nem lehet a múltban");
+                    MessageBox.Show("A válaszott időpont nem lehet a múltban, válaszd ki a munkádosat/szolgáltatást");
                 }
                 else
                 {
-                    MessageBox.Show("Hibás Dátum");
+                    MessageBox.Show("Felvéve");
                 }
             }
             else
             {
                 MessageBox.Show("Válaszd ki az időpontot.");
-            }
-
-            if (cbxDolgozo == null)
-            {
-                MessageBox.Show("Válaszd ki a munkádosat!");
-            }
-
-            if (cbxSzolgaltatasok == null)
-            {
-                MessageBox.Show("Válaszd ki a szolgáltatást!");
             }
         }
     }
