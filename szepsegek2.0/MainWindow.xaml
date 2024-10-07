@@ -5,31 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:szepsegek2._0"
         mc:Ignorable="d"
-        Title="Szepsegek 2.0" Height="600" Width="400">
+        Title="Szepsegek 2.0" Height="600" Width="400"
+        Background="#F0F0F0">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Content="Foglalás" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
-        <Label Content="Munkás:" Grid.Row="1" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
-        <ComboBox x:Name="cbxDolgozok" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" SelectionChanged="cbxDolgozok_SelectionChanged">
 
-        </ComboBox>
-        <Label Content="Szolgáltatás:" Grid.Row="2" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
-        <ComboBox x:Name="cbxSzolgaltatasok" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180">
+        <Label Content="Foglalás" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="#3F51B5" Margin="0,20,0,20"/>
 
-        </ComboBox>
-        <Label Content="Időpont:" Grid.Row="3" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
-        <DatePicker x:Name="dtpIdopont" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Button x:Name="btnFoglal" Content="Foglalás" Grid.Row="4" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Click="btnFoglal_Click"/>
+        <Label Content="Munkás:" Grid.Row="1" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15" Foreground="#333" Margin="0,10,0,0"/>
+        <ComboBox x:Name="cbxDolgozok" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" 
+                  Margin="0,10,0,0" FontSize="14" Padding="5" Background="White" BorderBrush="#3F51B5" BorderThickness="1"/>
+
+        <Label Content="Szolgáltatás:" Grid.Row="2" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15" Foreground="#333" Margin="0,10,0,0"/>
+        <ComboBox x:Name="cbxSzolgaltatasok" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" 
+                  Margin="0,10,0,0" FontSize="14" Padding="5" Background="White" BorderBrush="#3F51B5" BorderThickness="1"/>
+
+        <Label Content="Időpont:" Grid.Row="3" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15" Foreground="#333" Margin="0,10,0,0"/>
+        <DatePicker x:Name="dtpIdopont" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                     Margin="0,10,0,0" Width="180" Background="White" BorderBrush="#3F51B5" BorderThickness="1"/>
+
+        <Button x:Name="btnFoglal" Content="Foglalás" Grid.Row="4" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" 
+                Margin="0,20,0,0" Background="#3F51B5" Foreground="White" FontSize="16" FontWeight="Bold" Padding="10,5" BorderThickness="0" Cursor="Hand"
+                Click="btnFoglal_Click"/>
     </Grid>
 </Window>
