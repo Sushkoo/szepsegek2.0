@@ -68,18 +68,6 @@ namespace szepsegek2._0
 
             readerSzolgaltatas.Close();
             connectionSzolgaltatas.Close();
-
-            string queryDolgozoID = "SElECT dolgozok.DolgozoID from dolgozok WHERE DolgozoKeresztNev = @selectedValue";
-            MySqlConnection connectionDolgozoID = new MySqlConnection(connectionString);
-            connectionDolgozoID.Open();
-            MySqlCommand commandDolgozoID = new MySqlCommand(queryDolgozoID, connectionDolgozoID);
-            MySqlDataReader readerDolgozoID = commandDolgozoID.ExecuteReader();
-            while (readerDolgozoID.Read())
-            {
-               dolgozoID = readerDolgozoID["DolgozoID"].ToString();
-            }
-            readerDolgozoID.Close();
-            connectionDolgozoID.Close();
         }
 
         private void btnFoglal_Click(object sender, RoutedEventArgs e)
@@ -94,7 +82,17 @@ namespace szepsegek2._0
                 }
                 else
                 {
-                    MessageBox.Show("Felvéve");
+                    string queryDolgozoID = "SElECT dolgozok.DolgozoID from dolgozok WHERE DolgozoKeresztNev = @selectedValue";
+                    MySqlConnection connectionDolgozoID = new MySqlConnection(connectionString);
+                    connectionDolgozoID.Open();
+                    MySqlCommand commandDolgozoID = new MySqlCommand(queryDolgozoID, connectionDolgozoID);
+                    MySqlDataReader readerDolgozoID = commandDolgozoID.ExecuteReader();
+                    while (readerDolgozoID.Read())
+                    {
+                        dolgozoID = readerDolgozoID["DolgozoID"].ToString();
+                    }
+                    readerDolgozoID.Close();
+                    connectionDolgozoID.Close();
 
                     DateTime selectedDateTime = dtpIdopont.SelectedDate.Value;
 
@@ -110,6 +108,8 @@ namespace szepsegek2._0
                     command.ExecuteNonQuery();
 
                     connection.Close();
+
+                    MessageBox.Show("Foglalás rögzítve!");
                 }
             }
             else
