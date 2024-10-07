@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +17,16 @@ namespace szepsegek2._0
     /// </summary>
     public partial class MainWindow : Window
     {
+        string connectionString = "Server=localhost; Database=szepsegek2; UserID=root; Password=; Allow User Variables=true;";
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnFoglal_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

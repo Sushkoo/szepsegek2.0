@@ -14,6 +14,6 @@ namespace szepsegek2._0
         public string DolgozoTelefon { get; set; }
         public string DolgozoEmail { get; set; }
         public bool DolgozoStatusz { get; set; }
-        public int DolgozoSzolgaltatasa { get; set; }
+        public int SzolgaltatasID { get; set; }
     }
 }
