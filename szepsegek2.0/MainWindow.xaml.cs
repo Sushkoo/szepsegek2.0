@@ -10,6 +10,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
+using System.Windows.Controls;
 
 namespace szepsegek2._0
 {
@@ -23,6 +24,7 @@ namespace szepsegek2._0
         {
             InitializeComponent();
             LoadFromDB();
+            cbxDolgozok.SelectionChanged += cbxDolgozok_SelectionChanged;
         }
 
         public void LoadFromDB()
@@ -43,7 +45,6 @@ namespace szepsegek2._0
             readerDolgozo.Close();
             connectionDolgozo.Close();
         }
-
         private void cbxDolgozok_SelectionChanged(object sender, EventArgs e)
         {
             string selectedValue = cbxDolgozok.SelectedItem.ToString();
@@ -54,6 +55,7 @@ namespace szepsegek2._0
             MySqlConnection connectionSzolgaltatas = new MySqlConnection(connectionString);
             connectionSzolgaltatas.Open();
             MySqlCommand commandSzolgaltatas = new MySqlCommand(querySzolgaltatas, connectionSzolgaltatas);
+            commandSzolgaltatas.Parameters.AddWithValue("@selectedValue", selectedValue);
             MySqlDataReader readerSzolgaltatas = commandSzolgaltatas.ExecuteReader();
 
             while (readerSzolgaltatas.Read())
@@ -62,8 +64,6 @@ namespace szepsegek2._0
             }
             readerSzolgaltatas.Close();
             connectionSzolgaltatas.Close();
-    
-        
         }
 
         private void btnFoglal_Click(object sender, RoutedEventArgs e)
