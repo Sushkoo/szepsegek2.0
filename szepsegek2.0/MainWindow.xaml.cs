@@ -69,7 +69,7 @@ namespace szepsegek2._0
             readerSzolgaltatas.Close();
             connectionSzolgaltatas.Close();
 
-            string queryDolgozoID = "SElECT DolgozoID from dolgozok WHERE DolgozoKeresztNev = @selectedValue";
+            string queryDolgozoID = "SElECT dolgozok.DolgozoID from dolgozok WHERE DolgozoKeresztNev = @selectedValue";
             MySqlConnection connectionDolgozoID = new MySqlConnection(connectionString);
             connectionDolgozoID.Open();
             MySqlCommand commandDolgozoID = new MySqlCommand(queryDolgozoID, connectionDolgozoID);
