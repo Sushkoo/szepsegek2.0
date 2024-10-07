@@ -48,7 +48,6 @@ namespace szepsegek2._0
         private void cbxDolgozok_SelectionChanged(object sender, EventArgs e)
         {
             string selectedValue = cbxDolgozok.SelectedItem.ToString();
-            MessageBox.Show(selectedValue);
 
             cbxSzolgaltatasok.Items.Clear();
             string querySzolgaltatas = "SELECT szolgaltatasok.SzolgaltatasKategoria FROM szolgaltatasok INNER JOIN dolgozok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID WHERE dolgozok.DolgozoKeresztNev = @selectedValue";
