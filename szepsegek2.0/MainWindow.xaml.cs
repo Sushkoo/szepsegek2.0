@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using MySqlConnector;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -45,7 +46,27 @@ namespace szepsegek2._0
 
         private void btnFoglal_Click(object sender, RoutedEventArgs e)
         {
+            DateTime? selectedDate = dtpIdopont.SelectedDate;
+            if (selectedDate.HasValue)
+            {
+                if (selectedDate.Value.Date < DateTime.Today)
+                {
+                    MessageBox.Show("A válaszott időpont nem lehet a múltban");
+                }
+                else
+                {
+                    MessageBox.Show("Hibás Dátum");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Válaszd ki az időpontot.");
+            }
 
+            if (cbxDolgozo.HasItems)
+            {
+                
+            }
         }
     }
 }
