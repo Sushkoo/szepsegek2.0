@@ -5,8 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:szepsegek2._0"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Szepsegek 2.0" Height="600" Width="400">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Foglalás" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+        <Label Content="Szolgáltatások:" Grid.Row="1" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
+        <ComboBox x:Name="cbxSzolgaltatasok" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180">
 
+        </ComboBox>
+        <Label Content="Munkás:" Grid.Row="2" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
+        <ComboBox x:Name="cbxDolgozo" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180">
+
+        </ComboBox>
+        <Label Content="Időpont:" Grid.Row="3" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
+        <DatePicker x:Name="dtpIdopont" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Button x:Name="btnFoglal" Content="Foglalás" Grid.Row="4" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120"/>
     </Grid>
 </Window>
