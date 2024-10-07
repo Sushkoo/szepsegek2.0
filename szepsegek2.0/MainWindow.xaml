@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
         <Label Content="Foglalás" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
         <Label Content="Munkás:" Grid.Row="1" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
-        <ComboBox x:Name="cbxDolgozok" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180">
+        <ComboBox x:Name="cbxDolgozok"   Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" SelectionChanged="cbxDolgozok_SelectionChanged">
 
         </ComboBox>
         <Label Content="Szolgáltatás:" Grid.Row="2" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
