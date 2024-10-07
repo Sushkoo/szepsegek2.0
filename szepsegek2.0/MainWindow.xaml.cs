@@ -44,7 +44,7 @@ namespace szepsegek2._0
             connectionDolgozo.Close();
         }
 
-        private void cbxDolgozok_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbxDolgozok_SelectionChanged(object sender, EventArgs e)
         {
             string selectedValue = cbxDolgozok.SelectedItem.ToString();
 
