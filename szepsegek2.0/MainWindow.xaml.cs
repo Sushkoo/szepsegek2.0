@@ -20,6 +20,8 @@ namespace szepsegek2._0
     public partial class MainWindow : Window
     {
         static string connectionString = "Server=localhost; Database=szepsegek2; UserId=root; Password=; Allow User Variables=true";
+        string dolgozoID;
+        string szolgaltatasID;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,7 +33,7 @@ namespace szepsegek2._0
         {
 
             // Replace with your query
-            string queryDolgozo = "SELECT DISTINCT DolgozoKeresztNev FROM dolgozok";
+            string queryDolgozo = "SELECT DISTINCT DolgozoKeresztNev, DolgozoID FROM dolgozok";
 
             MySqlConnection connectionDolgozo = new MySqlConnection(connectionString);
             connectionDolgozo.Open();
@@ -49,8 +51,9 @@ namespace szepsegek2._0
         {
             string selectedValue = cbxDolgozok.SelectedItem.ToString();
 
+
             cbxSzolgaltatasok.Items.Clear();
-            string querySzolgaltatas = "SELECT szolgaltatasok.SzolgaltatasKategoria FROM szolgaltatasok INNER JOIN dolgozok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID WHERE dolgozok.DolgozoKeresztNev = @selectedValue";
+            string querySzolgaltatas = "SELECT szolgaltatasok.SzolgaltatasKategoria, szolgaltatasok.SzolgaltatasID FROM szolgaltatasok INNER JOIN dolgozok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID WHERE dolgozok.DolgozoKeresztNev = @selectedValue";
             MySqlConnection connectionSzolgaltatas = new MySqlConnection(connectionString);
             connectionSzolgaltatas.Open();
             MySqlCommand commandSzolgaltatas = new MySqlCommand(querySzolgaltatas, connectionSzolgaltatas);
@@ -60,8 +63,21 @@ namespace szepsegek2._0
             while (readerSzolgaltatas.Read())
             {
                 cbxSzolgaltatasok.Items.Add(readerSzolgaltatas["SzolgaltatasKategoria"].ToString());
+                szolgaltatasID = readerSzolgaltatas["SzolgaltatasID"].ToString();
             }
+
             readerSzolgaltatas.Close();
+
+            string queryDolgozoID = "SElECT DolgozoID from dolgozok WHERE DolgozoKeresztNev = @selectedValue";
+            MySqlCommand commandDolgozoID = new MySqlCommand(queryDolgozoID, connectionSzolgaltatas);
+            commandSzolgaltatas.Parameters.AddWithValue("@selectedValue", selectedValue);
+            MySqlDataReader readerDolgozoID = commandSzolgaltatas.ExecuteReader();
+            while (readerDolgozoID.Read())
+            {
+               dolgozoID = readerSzolgaltatas["DolgozoID"].ToString();
+            }
+            readerDolgozoID.Close();
+
             connectionSzolgaltatas.Close();
         }
 
@@ -79,18 +95,15 @@ namespace szepsegek2._0
                 {
                     MessageBox.Show("Felvéve");
 
-                    int selectedDolgozoID = Convert.ToInt32(cbxDolgozok.SelectedValue);
-                    int selectedSzolgaltatasID = Convert.ToInt32(cbxSzolgaltatasok.SelectedValue);
-
                     DateTime selectedDateTime = dtpIdopont.SelectedDate.Value;
 
                     MySqlConnection connection = new MySqlConnection(connectionString);
                     connection.Open();
 
-                    MySqlCommand command = new MySqlCommand("INSERT INTO foglalas (SzolgaltatasID, DolozoID, Ido) VALUES (@SelectedSzolgaltatasID, @SelectedDolgozoID, @SelectedDateTime)", connection);
+                    MySqlCommand command = new MySqlCommand("INSERT INTO foglalas (SzolgaltatasID, DolozoID, Ido) VALUES (@szolgaltatasID, @dolgozoID, @SelectedDateTime)", connection);
 
-                    command.Parameters.AddWithValue("@SelectedSzolgaltatasID", selectedSzolgaltatasID);
-                    command.Parameters.AddWithValue("@SelectedDolgozoID", selectedDolgozoID);
+                    command.Parameters.AddWithValue("@szolgaltatasID", int.Parse(szolgaltatasID));
+                    command.Parameters.AddWithValue("@dolgozoID", int.Parse(dolgozoID));
                     command.Parameters.AddWithValue("@SelectedDateTime", selectedDateTime);
 
                     command.ExecuteNonQuery();
