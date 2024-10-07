@@ -38,12 +38,18 @@ namespace szepsegek2._0
 
             while (readerDolgozo.Read())
             {
-                cbxDolgozo.Items.Add(readerDolgozo["DolgozoKeresztNev"].ToString());
+                cbxDolgozok.Items.Add(readerDolgozo["DolgozoKeresztNev"].ToString());
             }
             readerDolgozo.Close();
             connectionDolgozo.Close();
+        }
 
-            string querySzolgaltatas = "SELECT szolgaltatasok.SzolgaltatasKategoria FROM szolgaltatasok INNER JOIN dolgozok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID";
+        private void cbxDolgozok_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedValue = cbxDolgozok.SelectedItem.ToString();
+
+            cbxSzolgaltatasok.Items.Clear();
+            string querySzolgaltatas = "SELECT szolgaltatasok.SzolgaltatasKategoria FROM szolgaltatasok INNER JOIN dolgozok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID WHERE DolgozoKeresztNev = @selectedValue";
             MySqlConnection connectionSzolgaltatas = new MySqlConnection(connectionString);
             connectionSzolgaltatas.Open();
             MySqlCommand commandSzolgaltatas = new MySqlCommand(querySzolgaltatas, connectionSzolgaltatas);
@@ -55,6 +61,8 @@ namespace szepsegek2._0
             }
             readerSzolgaltatas.Close();
             connectionSzolgaltatas.Close();
+    
+        
         }
 
         private void btnFoglal_Click(object sender, RoutedEventArgs e)
@@ -76,7 +84,7 @@ namespace szepsegek2._0
                 MessageBox.Show("Válaszd ki az időpontot.");
             }
 
-            if (cbxDolgozo == null)
+            if (cbxDolgozok == null)
             {
                 MessageBox.Show("Válaszd ki a munkádosat!");
             }

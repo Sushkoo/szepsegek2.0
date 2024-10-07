@@ -20,12 +20,12 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Content="Foglalás" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
-        <Label Content="Szolgáltatások:" Grid.Row="1" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
-        <ComboBox x:Name="cbxSzolgaltatasok" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180">
+        <Label Content="Munkás:" Grid.Row="1" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
+        <ComboBox x:Name="cbxDolgozok" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180">
 
         </ComboBox>
-        <Label Content="Munkás:" Grid.Row="2" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
-        <ComboBox x:Name="cbxDolgozo" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180">
+        <Label Content="Szolgáltatás:" Grid.Row="2" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
+        <ComboBox x:Name="cbxSzolgaltatasok" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180">
 
         </ComboBox>
         <Label Content="Időpont:" Grid.Row="3" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
