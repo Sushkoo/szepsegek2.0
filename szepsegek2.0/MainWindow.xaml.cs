@@ -45,6 +45,7 @@ namespace szepsegek2._0
 
             string querySzolgaltatas = "SELECT szolgaltatasok.SzolgaltatasKategoria FROM szolgaltatasok INNER JOIN szolgaltatasok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID";
             MySqlConnection connectionSzolgaltatas = new MySqlConnection(connectionString);
+            connectionSzolgaltatas.Open();
             MySqlCommand commandSzolgaltatas = new MySqlCommand(querySzolgaltatas, connectionSzolgaltatas);
             MySqlDataReader readerSzolgaltatas = commandSzolgaltatas.ExecuteReader();
 
