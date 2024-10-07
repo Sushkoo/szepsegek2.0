@@ -68,15 +68,16 @@ namespace szepsegek2._0
         private void btnFoglal_Click(object sender, RoutedEventArgs e)
         {
             DateTime? selectedDate = dtpIdopont.SelectedDate;
+  
             if (selectedDate.HasValue)
             {
-                if (selectedDate.Value.Date < DateTime.Today)
+                if (cbxDolgozok.SelectedItem == null || cbxSzolgaltatasok.SelectedItem == null || selectedDate.Value.Date < DateTime.Today)
                 {
-                    MessageBox.Show("A válaszott időpont nem lehet a múltban");
+                    MessageBox.Show("A válaszott időpont nem lehet a múltban, válaszd ki a munkádosat/szolgáltatást");
                 }
                 else
                 {
-                    MessageBox.Show("Hibás Dátum");
+                    MessageBox.Show("Felvéve");
                 }
             }
             else
