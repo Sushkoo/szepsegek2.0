@@ -78,6 +78,24 @@ namespace szepsegek2._0
                 else
                 {
                     MessageBox.Show("Felvéve");
+
+                    int selectedDolgozoID = Convert.ToInt32(cbxDolgozok.SelectedValue);
+                    int selectedSzolgaltatasID = Convert.ToInt32(cbxSzolgaltatasok.SelectedValue);
+
+                    DateTime selectedDateTime = dtpIdopont.SelectedDate.Value;
+
+                    MySqlConnection connection = new MySqlConnection(connectionString);
+                    connection.Open();
+
+                    MySqlCommand command = new MySqlCommand("INSERT INTO foglalas (SzolgaltatasID, DolozoID, Ido) VALUES (@SelectedSzolgaltatasID, @SelectedDolgozoID, @SelectedDateTime)", connection);
+
+                    command.Parameters.AddWithValue("@SelectedSzolgaltatasID", selectedSzolgaltatasID);
+                    command.Parameters.AddWithValue("@SelectedDolgozoID", selectedDolgozoID);
+                    command.Parameters.AddWithValue("@SelectedDateTime", selectedDateTime);
+
+                    command.ExecuteNonQuery();
+
+                    connection.Close();
                 }
             }
             else
@@ -95,6 +113,5 @@ namespace szepsegek2._0
                 MessageBox.Show("Válaszd ki a szolgáltatást!");
             }
         }
-
     }
 }
