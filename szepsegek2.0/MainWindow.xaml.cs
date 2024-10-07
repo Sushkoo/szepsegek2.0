@@ -67,17 +67,18 @@ namespace szepsegek2._0
             }
 
             readerSzolgaltatas.Close();
+            connectionSzolgaltatas.Close();
 
             string queryDolgozoID = "SElECT DolgozoID from dolgozok WHERE DolgozoKeresztNev = @selectedValue";
-            MySqlCommand commandDolgozoID = new MySqlCommand(queryDolgozoID, connectionSzolgaltatas);
+            MySqlConnection connectionDolgozoID = new MySqlConnection(connectionString);
+            MySqlCommand commandDolgozoID = new MySqlCommand(queryDolgozoID, connectionDolgozoID);
             MySqlDataReader readerDolgozoID = commandSzolgaltatas.ExecuteReader();
             while (readerDolgozoID.Read())
             {
                dolgozoID = readerSzolgaltatas["DolgozoID"].ToString();
             }
             readerDolgozoID.Close();
-
-            connectionSzolgaltatas.Close();
+            connectionDolgozoID.Close();
         }
 
         private void btnFoglal_Click(object sender, RoutedEventArgs e)
