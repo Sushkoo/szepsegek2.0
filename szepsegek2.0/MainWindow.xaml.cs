@@ -9,6 +9,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using MySqlConnector;
 
 namespace szepsegek2._0
 {
@@ -30,17 +32,28 @@ namespace szepsegek2._0
         {
 
             // Replace with your query
-            string query = "SELECT DISTINCT DolgozoKeresztNev FROM dolgozok";
+            string queryDolgozo = "SELECT DISTINCT DolgozoKeresztNev FROM dolgozok";
 
-            MySqlCommand command = new MySqlCommand(query, connection);
-            MySqlDataReader reader = command.ExecuteReader();
+            MySqlCommand commandDolgozo = new MySqlCommand(queryDolgozo, connection);
+            MySqlDataReader readerDolgozo = commandDolgozo.ExecuteReader();
 
-            while (reader.Read())
+            while (readerDolgozo.Read())
             {
-                cbxDolgozo.Items.Add(reader["DolgozoKeresztNev"].ToString());
+                cbxDolgozo.Items.Add(readerDolgozo["DolgozoKeresztNev"].ToString());
             }
 
-            reader.Close();
+            string querySzolgaltatas = "SELECT szolgaltatasok.SzolgaltatasKategoria FROM szolgaltatasok INNER JOIN szolgaltatasok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID";
+
+            MySqlCommand commandSzolgaltatas = new MySqlCommand(querySzolgaltatas, connection);
+            MySqlDataReader readerSzolgaltatas = commandSzolgaltatas.ExecuteReader();
+
+            while (readerSzolgaltatas.Read())
+            {
+                cbxSzolgaltatasok.Items.Add(readerSzolgaltatas["SzolgaltatasKategoria"].ToString());
+            }
+
+            readerDolgozo.Close();
+            readerSzolgaltatas.Close();
             connection.Close();
         }
 
