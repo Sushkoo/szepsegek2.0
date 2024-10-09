@@ -11,6 +11,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Windows.Controls;
+using System.Collections.ObjectModel;
 
 namespace szepsegek2._0
 {
@@ -22,6 +23,8 @@ namespace szepsegek2._0
         static string connectionString = "Server=localhost; Database=szepsegek2; UserId=root; Password=; Allow User Variables=true";
         string dolgozoID;
         string szolgaltatasID;
+        int foglalsID = 1;
+        ObservableCollection<Foglalas> dtgSource;
         public MainWindow()
         {
             InitializeComponent();
@@ -101,6 +104,15 @@ namespace szepsegek2._0
                     connection.Close();
 
                     MessageBox.Show("Foglalás rögzítve!");
+                    Foglalas ujFoglalas = new Foglalas()
+                    {
+                        FoglalasID = foglalsID,
+                        DolgozoID = int.Parse(dolgozoID),
+                        SzolgaltatasID = int.Parse(szolgaltatasID),
+                        Ido = selectedDateTime.ToString("yyyy-MM-dd")
+                    };
+                    foglalsID++;
+                    dtgSource.Add(ujFoglalas);
                 }
             }
             else

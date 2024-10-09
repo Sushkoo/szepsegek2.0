@@ -11,8 +11,7 @@ namespace szepsegek2._0
         public int FoglalasID { get; set; }
         public int SzolgaltatasID { get; set; }
         public int DolgozoID { get; set; }
-        public int UgyfelID { get; set; }
-        public int Ido {  get; set; }
+        public string Ido {  get; set; }
     }
 
 }
