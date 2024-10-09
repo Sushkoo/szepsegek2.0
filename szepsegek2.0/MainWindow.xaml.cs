@@ -20,8 +20,8 @@ namespace szepsegek2._0
     public partial class MainWindow : Window
     {
         static string connectionString = "Server=localhost; Database=szepsegek2; UserId=root; Password=; Allow User Variables=true";
-        string? dolgozoID;
-        string? szolgaltatasID;
+        string dolgozoID;
+        string szolgaltatasID;
         public MainWindow()
         {
             InitializeComponent();
@@ -55,7 +55,7 @@ namespace szepsegek2._0
 
 
             cbxSzolgaltatasok.Items.Clear();
-            string querySzolgaltatas = "SELECT szolgaltatasok.SzolgaltatasKategoria, szolgaltatasok.SzolgaltatasID FROM szolgaltatasok INNER JOIN dolgozok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID WHERE dolgozok.DolgozoKeresztNev = @selectedValue";
+            string querySzolgaltatas = "SELECT szolgaltatasok.SzolgaltatasID, dolgozok.DolgozoID FROM szolgaltatasok INNER JOIN dolgozok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID WHERE dolgozok.DolgozoKeresztNev = @selectedValue";
             MySqlConnection connectionSzolgaltatas = new MySqlConnection(connectionString);
             connectionSzolgaltatas.Open();
             MySqlCommand commandSzolgaltatas = new MySqlCommand(querySzolgaltatas, connectionSzolgaltatas);
@@ -66,12 +66,13 @@ namespace szepsegek2._0
             {
                 cbxSzolgaltatasok.Items.Add(readerSzolgaltatas["SzolgaltatasKategoria"].ToString());
                 szolgaltatasID = readerSzolgaltatas["SzolgaltatasID"].ToString();
+                dolgozoID = readerSzolgaltatas["DolgozoID"].ToString();
             }
 
             readerSzolgaltatas.Close();
             connectionSzolgaltatas.Close();
 
-            string queryDolgozoID = "SElECT dolgozok.DolgozoID from dolgozok WHERE DolgozoKeresztNev = @selectedValue";
+            /*string queryDolgozoID = "SElECT dolgozok.DolgozoID from dolgozok WHERE DolgozoKeresztNev = @selectedValue";
             MySqlConnection connectionDolgozoID = new MySqlConnection(connectionString);
             connectionDolgozoID.Open();
             MySqlCommand commandDolgozoID = new MySqlCommand(queryDolgozoID, connectionDolgozoID);
@@ -81,7 +82,7 @@ namespace szepsegek2._0
                 dolgozoID = readerDolgozoID["DolgozoID"].ToString();
             }
             readerDolgozoID.Close();
-            connectionDolgozoID.Close();
+            connectionDolgozoID.Close();*/
         }
 
         private void btnFoglal_Click(object sender, RoutedEventArgs e)
