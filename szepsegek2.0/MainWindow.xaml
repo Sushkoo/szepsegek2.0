@@ -93,8 +93,8 @@
             <Label Content="Időpont:" Grid.Row="2" VerticalAlignment="Center" Foreground="#4CAF50" />
             <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
                 <DatePicker x:Name="dtpIdopont" Width="180" Margin="10,0,0,0" 
-                Style="{StaticResource MaterialDatePickerStyle}" />
-                <xctk:DateTimeUpDown VerticalAlignment="Center" HorizontalAlignment="Center" Format="LongTime" Value="13:30" Margin="10,0,0,0" />
+                Style="{StaticResource MaterialDatePickerStyle}" SelectedDateChanged="dtpIdopont_SelectedDateChanged"/>
+                <xctk:DateTimeUpDown x:Name="dtudOra" VerticalAlignment="Center" HorizontalAlignment="Center" Format="LongTime" Value="13:30" Margin="10,0,0,0" Visibility="Collapsed"/>
             </StackPanel>
         </Grid>
 
