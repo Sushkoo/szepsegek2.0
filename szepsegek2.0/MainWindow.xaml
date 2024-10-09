@@ -5,32 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:szepsegek2._0"
         mc:Ignorable="d"
-        Title="Szepsegek 2.0" Height="600" Width="400"
-        Background="#F0F0F0"
+        Title="Szepsegek 2.0" Height="600" Width="800"
+        Background="#F7F7F7"
         ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="MaterialComboBoxStyle" TargetType="ComboBox">
-            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Background" Value="#C9E4CA" />
             <Setter Property="Foreground" Value="#333333" />
             <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="BorderBrush" Value="#DDDDDD" />
+            <Setter Property="BorderBrush" Value="#8BC34A" />
             <Setter Property="Padding" Value="5" />
             <Setter Property="FontSize" Value="14" />
             <Setter Property="FontFamily" Value="Segoe UI" />
         </Style>
 
         <Style x:Key="MaterialDatePickerStyle" TargetType="DatePicker">
-            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Background" Value="#C9E4CA" />
             <Setter Property="Foreground" Value="#333333" />
             <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="BorderBrush" Value="#DDDDDD" />
+            <Setter Property="BorderBrush" Value="#8BC34A" />
             <Setter Property="Padding" Value="5" />
             <Setter Property="FontSize" Value="14" />
             <Setter Property="FontFamily" Value="Segoe UI" />
         </Style>
 
         <Style x:Key="MaterialButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#3F51B5" />
+            <Setter Property="Background" Value="#8BC34A" />
             <Setter Property="Foreground" Value="#FFFFFF" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Padding" Value="10,5" />
@@ -43,7 +43,7 @@
             <Setter Property="Background" Value="#FFFFFF" />
             <Setter Property="Foreground" Value="#333333" />
             <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="BorderBrush" Value="#DDDDDD" />
+            <Setter Property="BorderBrush" Value="#C9E4CA" />
             <Setter Property="Padding" Value="5" />
             <Setter Property="FontSize" Value="14" />
             <Setter Property="FontFamily" Value="Segoe UI" />
@@ -66,7 +66,7 @@
 
         <!-- Header section -->
         <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,20,0,20">
-            <Label Content="Foglalás" FontSize="24" FontWeight="Bold" Foreground="#3F51B5" VerticalAlignment="Center" />
+            <Label Content="Szepsegek 2.0" FontSize="24" FontWeight="Bold" Foreground="#8BC34A" VerticalAlignment="Center" />
         </StackPanel>
 
         <!-- Form section -->
@@ -81,22 +81,22 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Label Content="Munkás:" Grid.Row="0" VerticalAlignment="Center" />
-            <ComboBox x:Name="cbxDolgozok" Grid.Row="0" Grid.Column="1" Width="180" Margin="10,0,0,0" 
+            <Label Content="Munkás:" Grid.Row="0" VerticalAlignment="Center" Foreground="#2196F3" />
+            <ComboBox x:Name="cbxDolgozok" Grid.Row="0" Grid.Column="1" Width="180 " Margin="10,0,0,0" 
                       Style="{StaticResource MaterialComboBoxStyle}" />
 
-            <Label Content="Szolgáltatás:" Grid.Row="1" VerticalAlignment="Center" />
+            <Label Content="Szolgáltatás:" Grid.Row="1" VerticalAlignment="Center" Foreground="#F44336" />
             <ComboBox x:Name="cbxSzolgaltatasok" Grid.Row="1" Grid.Column="1" Width="180" Margin="10,0,0,0" 
                       Style="{StaticResource MaterialComboBoxStyle}" />
 
-            <Label Content="Időpont:" Grid.Row="2" VerticalAlignment="Center" />
+            <Label Content="Időpont:" Grid.Row="2" VerticalAlignment="Center" Foreground="#4CAF50" />
             <DatePicker x:Name="dtpIdopont" Grid.Row="2" Grid.Column="1" Width="180" Margin="10,0,0,0" 
                         Style="{StaticResource MaterialDatePickerStyle}" />
         </Grid>
 
         <!-- Button section -->
         <Button x:Name="btnFoglal" Content="Foglalás" Grid.Row="4" Grid.ColumnSpan="3" HorizontalAlignment="Center" Width="120" 
-                Margin="0,20,0,0" Background="#3F51B5" Foreground="White" FontSize="16" FontWeight="Bold" Padding="10,5" BorderThickness="0" Cursor="Hand"
+                Margin="0,20,0,0" Background="#8BC34A" Foreground="White" FontSize="16" FontWeight="Bold" Padding="10,5" BorderThickness="0" Cursor="Hand"
                 Style="{StaticResource MaterialButtonStyle}" />
 
         <!-- DataGrid section -->
