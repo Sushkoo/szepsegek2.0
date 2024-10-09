@@ -19,6 +19,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -39,5 +40,7 @@
         <Button x:Name="btnFoglal" Content="Foglalás" Grid.Row="4" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" 
                 Margin="0,20,0,0" Background="#3F51B5" Foreground="White" FontSize="16" FontWeight="Bold" Padding="10,5" BorderThickness="0" Cursor="Hand"
                 Click="btnFoglal_Click"/>
+
+        <DataGrid x:Name="dtgFoglalasok" Grid.Row="5" Grid.ColumnSpan="3"/>
     </Grid>
 </Window>

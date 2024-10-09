@@ -30,6 +30,7 @@ namespace szepsegek2._0
             InitializeComponent();
             LoadFromDB();
             cbxDolgozok.SelectionChanged += cbxDolgozok_SelectionChanged;
+            dtgFoglalasok.ItemsSource = dtgSource;
         }
 
         public void LoadFromDB()
