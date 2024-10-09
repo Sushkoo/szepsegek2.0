@@ -22,11 +22,13 @@ namespace szepsegek2._0
         static string connectionString = "Server=localhost; Database=szepsegek2; UserId=root; Password=; Allow User Variables=true";
         string dolgozoID;
         string szolgaltatasID;
+        string selectedValue;
         public MainWindow()
         {
             InitializeComponent();
             LoadFromDB();
             cbxDolgozok.SelectionChanged += cbxDolgozok_SelectionChanged;
+            selectedValue = cbxDolgozok.SelectedItem.ToString();
         }
 
         public void LoadFromDB()
@@ -46,10 +48,24 @@ namespace szepsegek2._0
             }
             readerDolgozo.Close();
             connectionDolgozo.Close();
+
+            string queryDolgozoID = "SElECT dolgozok.DolgozoID from dolgozok WHERE DolgozoKeresztNev = @selectedValue";
+            MySqlConnection connectionDolgozoID = new MySqlConnection(connectionString);
+            connectionDolgozoID.Open();
+            MySqlCommand commandDolgozoID = new MySqlCommand(queryDolgozoID, connectionDolgozoID);
+            MySqlDataReader readerDolgozoID = commandDolgozoID.ExecuteReader();
+            while (readerDolgozoID.Read())
+            {
+                dolgozoID = readerDolgozoID["DolgozoID"].ToString();
+            }
+            readerDolgozoID.Close();
+            connectionDolgozoID.Close();
+
+
         }
         private void cbxDolgozok_SelectionChanged(object sender, EventArgs e)
         {
-            string selectedValue = cbxDolgozok.SelectedItem.ToString();
+
 
 
             cbxSzolgaltatasok.Items.Clear();
@@ -82,18 +98,7 @@ namespace szepsegek2._0
                 }
                 else
                 {
-                    string queryDolgozoID = "SElECT dolgozok.DolgozoID from dolgozok WHERE DolgozoKeresztNev = @selectedValue";
-                    MySqlConnection connectionDolgozoID = new MySqlConnection(connectionString);
-                    connectionDolgozoID.Open();
-                    MySqlCommand commandDolgozoID = new MySqlCommand(queryDolgozoID, connectionDolgozoID);
-                    MySqlDataReader readerDolgozoID = commandDolgozoID.ExecuteReader();
-                    while (readerDolgozoID.Read())
-                    {
-                        dolgozoID = readerDolgozoID["DolgozoID"].ToString();
-                        MessageBox.Show(dolgozoID);
-                    }
-                    readerDolgozoID.Close();
-                    connectionDolgozoID.Close();
+
 
                     DateTime selectedDateTime = dtpIdopont.SelectedDate.Value;
 
