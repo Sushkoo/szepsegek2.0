@@ -98,6 +98,7 @@ namespace szepsegek2._0
                     if (item.DolgozoID.ToString() == dolgozoID && item.OraPerc == oraperc)
                     {
                         System.Windows.MessageBox.Show("Már van foglalás erre az időpontra!");
+                        return;
                     } 
                 }
 
