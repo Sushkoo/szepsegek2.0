@@ -80,58 +80,80 @@ namespace szepsegek2._0
 
         private void btnFoglal_Click(object sender, RoutedEventArgs e)
         {
-            DateTime? selectedDate = dtpIdopont.SelectedDate;
-  
-            if (selectedDate.HasValue)
+            const int nyitas = 8;
+            const int zaras = 15;
+            const int zarasperc = 50;
+            int selectedHour = dtudOra.Value.Value.Hour;     
+            int selectedMinute = dtudOra.Value.Value.Minute;
+
+            System.Windows.MessageBox.Show(selectedMinute.ToString());
+            if (selectedHour<=nyitas || selectedHour>=zaras && selectedMinute >= zarasperc)
             {
-                if (cbxDolgozok.SelectedItem == null || cbxSzolgaltatasok.SelectedItem == null || selectedDate.Value.Date < DateTime.Today)
-                {
-                   System.Windows.MessageBox.Show("A válaszott időpont nem lehet a múltban, válaszd ki a munkádosat/szolgáltatást");
-                }
-                else
-                {
-                    DateTime selectedDateTime = dtpIdopont.SelectedDate.Value;
-
-                    MySqlConnection connection = new MySqlConnection(connectionString);
-                    connection.Open();
-
-                    MySqlCommand command = new MySqlCommand("INSERT INTO foglalasok (SzolgaltatasID, DolgozoID, Ido) VALUES (@szolgaltatasID, @dolgozoID, @SelectedDateTime)", connection);
-
-                    command.Parameters.AddWithValue("@szolgaltatasID", int.Parse(szolgaltatasID));
-                    
-                    command.Parameters.AddWithValue("@dolgozoID", int.Parse(dolgozoID));
-                    command.Parameters.AddWithValue("@SelectedDateTime", selectedDateTime.ToString("yyyy-MM-dd"));
-
-                    command.ExecuteNonQuery();
-
-                    connection.Close();
-
-                    System.Windows.MessageBox.Show("Foglalás rögzítve!");
-                    Foglalas ujFoglalas = new Foglalas()
-                    {
-                        FoglalasID = foglalsID,
-                        DolgozoID = int.Parse(dolgozoID),
-                        SzolgaltatasID = int.Parse(szolgaltatasID),
-                        Ido = selectedDateTime.ToString("yyyy-MM-dd")
-                    };
-                    foglalsID++;
-                    dtgSource.Add(ujFoglalas);
-                }
+                System.Windows.MessageBox.Show("Figyeld a nyitvatartast!!!!!!");
+                
             }
             else
             {
-                System.Windows.MessageBox.Show("Válaszd ki az időpontot.");
+                DateTime? selectedDate = dtpIdopont.SelectedDate;
+
+                if (selectedDate.HasValue)
+                {
+                    if (cbxDolgozok.SelectedItem == null || cbxSzolgaltatasok.SelectedItem == null || selectedDate.Value.Date < DateTime.Today)
+                    {
+                        System.Windows.MessageBox.Show("A válaszott időpont nem lehet a múltban, válaszd ki a munkádosat/szolgáltatást");
+                    }
+                    else
+                    {
+                        DateTime selectedDateTime = dtpIdopont.SelectedDate.Value;
+
+                        MySqlConnection connection = new MySqlConnection(connectionString);
+                        connection.Open();
+
+                        MySqlCommand command = new MySqlCommand("INSERT INTO foglalasok (SzolgaltatasID, DolgozoID, Ido) VALUES (@szolgaltatasID, @dolgozoID, @SelectedDateTime)", connection);
+
+                        command.Parameters.AddWithValue("@szolgaltatasID", int.Parse(szolgaltatasID));
+
+                        command.Parameters.AddWithValue("@dolgozoID", int.Parse(dolgozoID));
+                        command.Parameters.AddWithValue("@SelectedDateTime", selectedDateTime.ToString("yyyy-MM-dd"));
+
+                        command.ExecuteNonQuery();
+
+                        connection.Close();
+
+                        System.Windows.MessageBox.Show("Foglalás rögzítve!");
+                        Foglalas ujFoglalas = new Foglalas()
+                        {
+                            FoglalasID = foglalsID,
+                            DolgozoID = int.Parse(dolgozoID),
+                            SzolgaltatasID = int.Parse(szolgaltatasID),
+                            Ido = selectedDateTime.ToString("yyyy-MM-dd")
+                        };
+                        foglalsID++;
+                        dtgSource.Add(ujFoglalas);
+                    }
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Válaszd ki az időpontot.");
+                }
+
+                if (cbxDolgozok == null)
+                {
+                    System.Windows.MessageBox.Show("Válaszd ki a munkádosat!");
+                }
+
+                if (cbxSzolgaltatasok == null)
+                {
+                    System.Windows.MessageBox.Show("Válaszd ki a szolgáltatást!");
+                }
             }
 
-            if (cbxDolgozok == null)
-            {
-                System.Windows.MessageBox.Show("Válaszd ki a munkádosat!");
-            }
 
-            if (cbxSzolgaltatasok == null)
-            {
-                System.Windows.MessageBox.Show("Válaszd ki a szolgáltatást!");
-            }
+
+
+
+
+            
         }
 
         private void dtpIdopont_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
