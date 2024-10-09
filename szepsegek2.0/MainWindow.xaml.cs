@@ -20,8 +20,8 @@ namespace szepsegek2._0
     public partial class MainWindow : Window
     {
         static string connectionString = "Server=localhost; Database=szepsegek2; UserId=root; Password=; Allow User Variables=true";
-        string dolgozoID;
-        string szolgaltatasID;
+        string? dolgozoID;
+        string? szolgaltatasID;
         public MainWindow()
         {
             InitializeComponent();
@@ -82,23 +82,6 @@ namespace szepsegek2._0
             }
             readerDolgozoID.Close();
             connectionDolgozoID.Close();
-
-            DateTime selectedDateTime = dtpIdopont.SelectedDate.Value;
-
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            connection.Open();
-
-            MySqlCommand command = new MySqlCommand("INSERT INTO foglalas (SzolgaltatasID, DolgozoID, Ido) VALUES (@szolgaltatasID, @dolgozoID, @SelectedDateTime)", connection);
-
-            command.Parameters.AddWithValue("@szolgaltatasID", int.Parse(szolgaltatasID));
-            command.Parameters.AddWithValue("@dolgozoID", int.Parse(dolgozoID));
-            command.Parameters.AddWithValue("@SelectedDateTime", selectedDateTime);
-
-            command.ExecuteNonQuery();
-
-            connection.Close();
-
-            MessageBox.Show("Foglalás rögzítve!");
         }
 
         private void btnFoglal_Click(object sender, RoutedEventArgs e)
@@ -113,7 +96,7 @@ namespace szepsegek2._0
                 }
                 else
                 {
-                    /*DateTime selectedDateTime = dtpIdopont.SelectedDate.Value;
+                    DateTime selectedDateTime = dtpIdopont.SelectedDate.Value;
 
                     MySqlConnection connection = new MySqlConnection(connectionString);
                     connection.Open();
@@ -126,7 +109,7 @@ namespace szepsegek2._0
 
                     command.ExecuteNonQuery();
 
-                    connection.Close();*/
+                    connection.Close();
 
                     MessageBox.Show("Foglalás rögzítve!");
                 }
