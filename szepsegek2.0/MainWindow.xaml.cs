@@ -86,7 +86,7 @@ namespace szepsegek2._0
 
             string oraperc = selectedHour.ToString() + ":" + selectedMinute.ToString();
 
-            if (selectedHour<=nyitas || selectedHour>=zaras && selectedMinute >= zarasperc)
+            if (selectedHour<=nyitas || selectedHour>=zaras && selectedMinute >= zarasperc || selectedHour>=zaras)
             {
                 System.Windows.MessageBox.Show("Figyeld a nyitvatartast!!!!!!");
                 return;
