@@ -86,6 +86,8 @@ namespace szepsegek2._0
             int selectedHour = dtudOra.Value.Value.Hour;     
             int selectedMinute = dtudOra.Value.Value.Minute;
 
+            string oraperc = selectedHour.ToString() + ":" + selectedMinute.ToString();
+
             System.Windows.MessageBox.Show(selectedMinute.ToString());
             if (selectedHour<=nyitas || selectedHour>=zaras && selectedMinute >= zarasperc)
             {
@@ -109,12 +111,13 @@ namespace szepsegek2._0
                         MySqlConnection connection = new MySqlConnection(connectionString);
                         connection.Open();
 
-                        MySqlCommand command = new MySqlCommand("INSERT INTO foglalasok (SzolgaltatasID, DolgozoID, Ido) VALUES (@szolgaltatasID, @dolgozoID, @SelectedDateTime)", connection);
+                        MySqlCommand command = new MySqlCommand("INSERT INTO foglalasok (SzolgaltatasID, DolgozoID, Ido, OraPerc) VALUES (@szolgaltatasID, @dolgozoID, @SelectedDateTime, @oraperc)", connection);
 
                         command.Parameters.AddWithValue("@szolgaltatasID", int.Parse(szolgaltatasID));
 
                         command.Parameters.AddWithValue("@dolgozoID", int.Parse(dolgozoID));
                         command.Parameters.AddWithValue("@SelectedDateTime", selectedDateTime.ToString("yyyy-MM-dd"));
+                        command.Parameters.AddWithValue("@oraperc", oraperc);
 
                         command.ExecuteNonQuery();
 
@@ -126,7 +129,8 @@ namespace szepsegek2._0
                             FoglalasID = foglalsID,
                             DolgozoID = int.Parse(dolgozoID),
                             SzolgaltatasID = int.Parse(szolgaltatasID),
-                            Ido = selectedDateTime.ToString("yyyy-MM-dd")
+                            Ido = selectedDateTime.ToString("yyyy-MM-dd"),
+                            OraPerc = oraperc 
                         };
                         foglalsID++;
                         dtgSource.Add(ujFoglalas);
@@ -147,15 +151,7 @@ namespace szepsegek2._0
                     System.Windows.MessageBox.Show("Válaszd ki a szolgáltatást!");
                 }
             }
-
-
-
-
-
-
-            
         }
-
         private void dtpIdopont_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             dtudOra.Visibility = Visibility.Visible;

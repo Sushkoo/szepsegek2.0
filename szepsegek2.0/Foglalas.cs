@@ -12,6 +12,7 @@ namespace szepsegek2._0
         public int SzolgaltatasID { get; set; }
         public int DolgozoID { get; set; }
         public string Ido {  get; set; }
+        public string OraPerc {  get; set; }
     }
 
 }
