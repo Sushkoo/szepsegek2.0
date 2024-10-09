@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:szepsegek2._0"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Szepsegek 2.0" Height="600" Width="800"
         Background="#F7F7F7"
@@ -90,16 +91,18 @@
                       Style="{StaticResource MaterialComboBoxStyle}" />
             
             <Label Content="Időpont:" Grid.Row="2" VerticalAlignment="Center" Foreground="#4CAF50" />
-            <DatePicker x:Name="dtpIdopont" Grid.Row="2" Grid.Column="1" Width="180" Margin="10,0,0,0" 
-                        Style="{StaticResource MaterialDatePickerStyle}" />
-           
+            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
+                <DatePicker x:Name="dtpIdopont" Width="180" Margin="10,0,0,0" 
+                Style="{StaticResource MaterialDatePickerStyle}" />
+                <xctk:DateTimeUpDown VerticalAlignment="Center" HorizontalAlignment="Center" Format="LongTime" Value="13:30" Margin="10,0,0,0" />
+            </StackPanel>
         </Grid>
 
         <!-- Button section -->
         <Button x:Name="btnFoglal" Content="Foglalás" Grid.Row="4" Grid.ColumnSpan="3" HorizontalAlignment="Center" Width="120" 
                 Margin="0,20,0,0" Background="#8BC34A" Foreground="White" FontSize="16" FontWeight="Bold" Padding="10,5" BorderThickness="0" Cursor="Hand"
                 Style="{StaticResource MaterialButtonStyle}" Click="btnFoglal_Click"/>
-
+   
         <!-- DataGrid section -->
         <DataGrid x:Name="dtgFoglalasok" Grid.Row="5" Grid.ColumnSpan="3" Margin="20" 
                   Style="{StaticResource MaterialDataGridStyle}" />

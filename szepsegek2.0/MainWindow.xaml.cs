@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
+using Xceed.Wpf.Toolkit;
 
 namespace szepsegek2._0
 {
@@ -85,7 +86,7 @@ namespace szepsegek2._0
             {
                 if (cbxDolgozok.SelectedItem == null || cbxSzolgaltatasok.SelectedItem == null || selectedDate.Value.Date < DateTime.Today)
                 {
-                    MessageBox.Show("A válaszott időpont nem lehet a múltban, válaszd ki a munkádosat/szolgáltatást");
+                   System.Windows.MessageBox.Show("A válaszott időpont nem lehet a múltban, válaszd ki a munkádosat/szolgáltatást");
                 }
                 else
                 {
@@ -105,7 +106,7 @@ namespace szepsegek2._0
 
                     connection.Close();
 
-                    MessageBox.Show("Foglalás rögzítve!");
+                    System.Windows.MessageBox.Show("Foglalás rögzítve!");
                     Foglalas ujFoglalas = new Foglalas()
                     {
                         FoglalasID = foglalsID,
@@ -119,17 +120,17 @@ namespace szepsegek2._0
             }
             else
             {
-                MessageBox.Show("Válaszd ki az időpontot.");
+                System.Windows.MessageBox.Show("Válaszd ki az időpontot.");
             }
 
             if (cbxDolgozok == null)
             {
-                MessageBox.Show("Válaszd ki a munkádosat!");
+                System.Windows.MessageBox.Show("Válaszd ki a munkádosat!");
             }
 
             if (cbxSzolgaltatasok == null)
             {
-                MessageBox.Show("Válaszd ki a szolgáltatást!");
+                System.Windows.MessageBox.Show("Válaszd ki a szolgáltatást!");
             }
         }
 
