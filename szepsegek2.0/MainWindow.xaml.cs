@@ -55,7 +55,7 @@ namespace szepsegek2._0
 
 
             cbxSzolgaltatasok.Items.Clear();
-            string querySzolgaltatas = "SELECT szolgaltatasok.SzolgaltatasID, dolgozok.DolgozoID FROM szolgaltatasok INNER JOIN dolgozok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID WHERE dolgozok.DolgozoKeresztNev = @selectedValue";
+            string querySzolgaltatas = "SELECT szolgaltatasok.SzolgaltatasID, szolgaltatasok.Szolgaltataskategoria, dolgozok.DolgozoID FROM szolgaltatasok INNER JOIN dolgozok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID WHERE dolgozok.DolgozoKeresztNev = @selectedValue";
             MySqlConnection connectionSzolgaltatas = new MySqlConnection(connectionString);
             connectionSzolgaltatas.Open();
             MySqlCommand commandSzolgaltatas = new MySqlCommand(querySzolgaltatas, connectionSzolgaltatas);
