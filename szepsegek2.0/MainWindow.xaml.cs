@@ -51,8 +51,6 @@ namespace szepsegek2._0
             }
             readerDolgozo.Close();
             connectionDolgozo.Close();
-
-
         }
         private void cbxDolgozok_SelectionChanged(object sender, EventArgs e)
         {
@@ -92,10 +90,17 @@ namespace szepsegek2._0
             if (selectedHour<=nyitas || selectedHour>=zaras && selectedMinute >= zarasperc  || )
             {
                 System.Windows.MessageBox.Show("Figyeld a nyitvatartast!!!!!!");
-                
             }
             else
             {
+                foreach (var item in dtgSource)
+                {
+                    if (item.DolgozoID.ToString() == dolgozoID && item.OraPerc == oraperc)
+                    {
+                        System.Windows.MessageBox.Show("Már van foglalás erre az időpontra!");
+                    } 
+                }
+
                 DateTime? selectedDate = dtpIdopont.SelectedDate;
 
                 if (selectedDate.HasValue)
