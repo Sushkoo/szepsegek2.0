@@ -96,6 +96,7 @@ namespace szepsegek2._0
                     MySqlCommand command = new MySqlCommand("INSERT INTO foglalasok (SzolgaltatasID, DolgozoID, Ido) VALUES (@szolgaltatasID, @dolgozoID, @SelectedDateTime)", connection);
 
                     command.Parameters.AddWithValue("@szolgaltatasID", int.Parse(szolgaltatasID));
+                    
                     command.Parameters.AddWithValue("@dolgozoID", int.Parse(dolgozoID));
                     command.Parameters.AddWithValue("@SelectedDateTime", selectedDateTime.ToString("yyyy-MM-dd"));
 
