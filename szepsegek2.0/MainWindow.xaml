@@ -97,7 +97,7 @@
         <!-- Button section -->
         <Button x:Name="btnFoglal" Content="Foglalás" Grid.Row="4" Grid.ColumnSpan="3" HorizontalAlignment="Center" Width="120" 
                 Margin="0,20,0,0" Background="#8BC34A" Foreground="White" FontSize="16" FontWeight="Bold" Padding="10,5" BorderThickness="0" Cursor="Hand"
-                Style="{StaticResource MaterialButtonStyle}" />
+                Style="{StaticResource MaterialButtonStyle}" Click="btnFoglal_Click"/>
 
         <!-- DataGrid section -->
         <DataGrid x:Name="dtgFoglalasok" Grid.Row="5" Grid.ColumnSpan="3" Margin="20" 
