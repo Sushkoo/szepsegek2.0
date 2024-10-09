@@ -24,7 +24,7 @@ namespace szepsegek2._0
         string dolgozoID;
         string szolgaltatasID;
         int foglalsID = 1;
-        ObservableCollection<Foglalas> dtgSource;
+        ObservableCollection<Foglalas> dtgSource = new();
         public MainWindow()
         {
             InitializeComponent();
