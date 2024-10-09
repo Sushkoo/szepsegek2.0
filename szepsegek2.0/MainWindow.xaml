@@ -105,6 +105,6 @@
    
         <!-- DataGrid section -->
         <DataGrid x:Name="dtgFoglalasok" Grid.Row="5" Grid.ColumnSpan="3" Margin="20" 
-                  Style="{StaticResource MaterialDataGridStyle}" />
+                  Style="{StaticResource MaterialDataGridStyle}" IsReadOnly="True"/>
     </Grid>
 </Window>

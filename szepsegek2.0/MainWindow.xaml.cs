@@ -89,6 +89,7 @@ namespace szepsegek2._0
             if (selectedHour<=nyitas || selectedHour>=zaras && selectedMinute >= zarasperc)
             {
                 System.Windows.MessageBox.Show("Figyeld a nyitvatartast!!!!!!");
+                return;
             }
             else
             {
