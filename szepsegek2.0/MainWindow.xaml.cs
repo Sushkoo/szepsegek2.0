@@ -132,5 +132,10 @@ namespace szepsegek2._0
                 MessageBox.Show("Válaszd ki a szolgáltatást!");
             }
         }
+
+        private void dtpIdopont_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
