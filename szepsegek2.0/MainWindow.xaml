@@ -66,7 +66,7 @@
 
         <!-- Header section -->
         <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,20,0,20">
-            <Label Content="Szepsegek 2.0" FontSize="24" FontWeight="Bold" Foreground="#8BC34A" VerticalAlignment="Center" />
+            <Label Content="Nyitvatartás: 8:00 - 16:00" FontSize="24" FontWeight="Bold" Foreground="#8BC34A" VerticalAlignment="Top" FlowDirection="RightToLeft"></Label>
         </StackPanel>
 
         <!-- Form section -->
@@ -88,10 +88,11 @@
             <Label Content="Szolgáltatás:" Grid.Row="1" VerticalAlignment="Center" Foreground="#F44336" />
             <ComboBox x:Name="cbxSzolgaltatasok" Grid.Row="1" Grid.Column="1" Width="180" Margin="10,0,0,0" 
                       Style="{StaticResource MaterialComboBoxStyle}" />
-
+            
             <Label Content="Időpont:" Grid.Row="2" VerticalAlignment="Center" Foreground="#4CAF50" />
             <DatePicker x:Name="dtpIdopont" Grid.Row="2" Grid.Column="1" Width="180" Margin="10,0,0,0" 
                         Style="{StaticResource MaterialDatePickerStyle}" />
+           
         </Grid>
 
         <!-- Button section -->
