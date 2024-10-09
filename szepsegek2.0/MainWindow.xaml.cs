@@ -71,18 +71,6 @@ namespace szepsegek2._0
 
             readerSzolgaltatas.Close();
             connectionSzolgaltatas.Close();
-
-            /*string queryDolgozoID = "SElECT dolgozok.DolgozoID from dolgozok WHERE DolgozoKeresztNev = @selectedValue";
-            MySqlConnection connectionDolgozoID = new MySqlConnection(connectionString);
-            connectionDolgozoID.Open();
-            MySqlCommand commandDolgozoID = new MySqlCommand(queryDolgozoID, connectionDolgozoID);
-            MySqlDataReader readerDolgozoID = commandDolgozoID.ExecuteReader();
-            while (readerDolgozoID.Read())
-            {
-                dolgozoID = readerDolgozoID["DolgozoID"].ToString();
-            }
-            readerDolgozoID.Close();
-            connectionDolgozoID.Close();*/
         }
 
         private void btnFoglal_Click(object sender, RoutedEventArgs e)
@@ -102,7 +90,7 @@ namespace szepsegek2._0
                     MySqlConnection connection = new MySqlConnection(connectionString);
                     connection.Open();
 
-                    MySqlCommand command = new MySqlCommand("INSERT INTO foglalas (SzolgaltatasID, DolgozoID, Ido) VALUES (@szolgaltatasID, @dolgozoID, @SelectedDateTime)", connection);
+                    MySqlCommand command = new MySqlCommand("INSERT INTO foglalasok (SzolgaltatasID, DolgozoID, Ido) VALUES (@szolgaltatasID, @dolgozoID, @SelectedDateTime)", connection);
 
                     command.Parameters.AddWithValue("@szolgaltatasID", int.Parse(szolgaltatasID));
                     
