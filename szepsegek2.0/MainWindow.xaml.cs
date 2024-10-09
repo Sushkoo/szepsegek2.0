@@ -136,7 +136,7 @@ namespace szepsegek2._0
 
         private void dtpIdopont_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            dtudOra.Visibility = Visibility.Visible;
         }
     }
 }
