@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:szepsegek2._0"
         mc:Ignorable="d"
         Title="Szepsegek 2.0" Height="600" Width="400"
-        Background="#F0F0F0">
+        Background="#F0F0F0"
+        ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
