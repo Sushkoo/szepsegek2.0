@@ -130,25 +130,7 @@ namespace szepsegek2._0
             int selectedHour = dtudOra.Value.Value.Hour;     
             int selectedMinute = dtudOra.Value.Value.Minute;
 
-            int selectedHourPercben = selectedHour * 60;
 
-            int selectedHourEsPerc = selectedHourPercben + selectedMinute;
-
-            //temporary data
-            int szolgaltatasIdotartam = 120;
-
-
-
-
-
-            int szolgaltatasVege = selectedHourEsPerc + szolgaltatasIdotartam;
-
-            int szolgaltatasVegeOra = szolgaltatasVege / 60;
-            int szolgaltatasVegePerc = szolgaltatasVege % 60;
-
-            //ezeket osszeadni es kiirni 
-
-            string szolgaltatasVegee = szolgaltatasVegeOra + ":" + szolgaltatasVegePerc;
 
 
             string oraperc = selectedHour.ToString() + ":" + selectedMinute.ToString();
