@@ -143,19 +143,43 @@ namespace szepsegek2._0
             }
             else
             {
-                /*if ()
-                {
-                    
-                }*/
+                EllenorizZarva(selectedHour, selectedMinute, szolgaltatasIdotartamValue, zaras, zarasperc);
 
 
+
+
+            }
+        }
+        private void dtpIdopont_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dtudOra.Visibility = Visibility.Visible;
+        }
+
+
+
+        public bool EllenorizZarva(int SelectedHour, int SelectedMinute, int szolgaltatasIdotartamValue, int zaras, int zarasperc)
+        {
+            
+            int selectedTimeInSeconds = SelectedHour * 3600 + SelectedMinute * 60;
+
+            int zarvaInSeconds = zaras * 3600 + zarasperc * 60;
+
+            int szolgaltatasIdotartamInSeconds = szolgaltatasIdotartamValue * 60; 
+
+            if (selectedTimeInSeconds + szolgaltatasIdotartamInSeconds > zarvaInSeconds)
+            {
+                System.Windows.MessageBox.Show("Túlhaladja a záróidőt.");
+                return true;
+            }
+            else
+            {
                 foreach (var item in dtgSource)
                 {
                     if (item.DolgozoID.ToString() == dolgozoID && item.OraPerc == oraperc)
                     {
                         System.Windows.MessageBox.Show("Már van foglalás erre az időpontra!");
                         return;
-                    } 
+                    }
                 }
 
                 DateTime? selectedDate = dtpIdopont.SelectedDate;
@@ -204,11 +228,8 @@ namespace szepsegek2._0
                 {
                     System.Windows.MessageBox.Show("Válaszd ki a szolgáltatást!");
                 }
+                return false;
             }
-        }
-        private void dtpIdopont_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            dtudOra.Visibility = Visibility.Visible;
         }
     }
 }
