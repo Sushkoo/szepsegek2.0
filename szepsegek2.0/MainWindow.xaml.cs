@@ -124,6 +124,13 @@ namespace szepsegek2._0
             int selectedHour = dtudOra.Value.Value.Hour;     
             int selectedMinute = dtudOra.Value.Value.Minute;
 
+            int selectedHourPercben = selectedHour * 60;
+            int selectedMinute;
+
+            int szolgaltatasVege = 
+
+
+
             string oraperc = selectedHour.ToString() + ":" + selectedMinute.ToString();
 
             if (selectedHour<=nyitas || selectedHour>=zaras && selectedMinute >= zarasperc || selectedHour>=zaras)
@@ -133,6 +140,12 @@ namespace szepsegek2._0
             }
             else
             {
+                if ()
+                {
+                    
+                }
+
+
                 foreach (var item in dtgSource)
                 {
                     if (item.DolgozoID.ToString() == dolgozoID && item.OraPerc == oraperc)
