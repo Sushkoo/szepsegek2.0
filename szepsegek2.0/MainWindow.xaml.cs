@@ -32,6 +32,7 @@ namespace szepsegek2._0
             InitializeComponent();
             LoadFromDB();
             cbxDolgozok.SelectionChanged += cbxDolgozok_SelectionChanged;
+            cbxSzolgaltatasok.SelectionChanged += cbxSzolgaltatasok_SelectionChanged;
             dtgFoglalasok.ItemsSource = dtgSource;
         }
 
@@ -88,7 +89,19 @@ namespace szepsegek2._0
             commandSzolgaltatas.Parameters.AddWithValue("@selectedValue", selectedValue);
             MySqlDataReader readerSzolgaltatas = commandSzolgaltatas.ExecuteReader();
 
+            while (readerSzolgaltatas.Read())
+            {
+                cbxSzolgaltatasok.Items.Add(readerSzolgaltatas["SzolgaltatasKategoria"].ToString());
+                szolgaltatasID = readerSzolgaltatas["SzolgaltatasID"].ToString();
+                dolgozoID = readerSzolgaltatas["DolgozoID"].ToString();
+            }
 
+            readerSzolgaltatas.Close();
+            connectionSzolgaltatas.Close();
+        }
+
+        private void cbxSzolgaltatasok_SelectionChanged(object sender, EventArgs e)
+        {
             using (MySqlConnection connectionIdotartam = new MySqlConnection(connectionString))
             {
                 connectionIdotartam.Open();
@@ -105,17 +118,8 @@ namespace szepsegek2._0
                     lblIdotartam.Content = szolgaltatasIdotartamValue;
                 }
             }
-            while (readerSzolgaltatas.Read())
-            {
-                cbxSzolgaltatasok.Items.Add(readerSzolgaltatas["SzolgaltatasKategoria"].ToString());
-                szolgaltatasID = readerSzolgaltatas["SzolgaltatasID"].ToString();
-                dolgozoID = readerSzolgaltatas["DolgozoID"].ToString();
-            }
-
-            readerSzolgaltatas.Close();
-            connectionSzolgaltatas.Close();
         }
-    
+
         private void btnFoglal_Click(object sender, RoutedEventArgs e)
         {
             const int nyitas = 8;
