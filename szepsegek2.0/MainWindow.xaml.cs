@@ -40,19 +40,24 @@ namespace szepsegek2._0
         {
 
             // Replace with your query
-            string queryDolgozo = "SELECT DISTINCT DolgozoKeresztNev, DolgozoID FROM dolgozok";
-
-            MySqlConnection connectionDolgozo = new MySqlConnection(connectionString);
-            connectionDolgozo.Open();
-            MySqlCommand commandDolgozo = new MySqlCommand(queryDolgozo, connectionDolgozo);
-            MySqlDataReader readerDolgozo = commandDolgozo.ExecuteReader();
-
-            while (readerDolgozo.Read())
+            if (dtgFoglalasok.Items.Count > 0)
             {
-                cbxDolgozok.Items.Add(readerDolgozo["DolgozoKeresztNev"].ToString());
+
+            
+                string queryDolgozo = "SELECT DISTINCT DolgozoKeresztNev, DolgozoID FROM dolgozok";
+
+                MySqlConnection connectionDolgozo = new MySqlConnection(connectionString);
+                connectionDolgozo.Open();
+                MySqlCommand commandDolgozo = new MySqlCommand(queryDolgozo, connectionDolgozo);
+                MySqlDataReader readerDolgozo = commandDolgozo.ExecuteReader();
+
+                while (readerDolgozo.Read())
+                {
+                    cbxDolgozok.Items.Add(readerDolgozo["DolgozoKeresztNev"].ToString());
+                }
+                readerDolgozo.Close();
+                connectionDolgozo.Close();
             }
-            readerDolgozo.Close();
-            connectionDolgozo.Close();
 
             MySqlConnection connectionDatagrid = new MySqlConnection(connectionString);
             connectionDatagrid.Open();
@@ -108,7 +113,7 @@ namespace szepsegek2._0
 
                 string selectedDolgozo = cbxDolgozok.SelectedItem.ToString();
 
-                MySqlCommand commandIdotartam = new MySqlCommand("SELECT szolgaltatasok.SzolgaltatasIdotartam FROM dolgozok INNER JOIN szolgaltatasok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID WHERE dolgozok.DolgozoKeresztNev = @selectedDolgozo", connectionIdotartam);
+                MySqlCommand commandIdotartam = new MySqlCommand("SELECT szolgaltatasok.SzolgaltatasIdotartam FROM dolgozok INNER JOIN szolgaltatasok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID", connectionIdotartam);
                 MySqlDataReader readerIdotartam = commandIdotartam.ExecuteReader();
 
                 while (readerIdotartam.Read())
