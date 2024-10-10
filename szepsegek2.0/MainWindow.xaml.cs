@@ -117,7 +117,7 @@ namespace szepsegek2._0
                     szolgaltatasIdotartamValue = readerIdotartam["SzolgaltatasIdotartam"].ToString();
                 }
 
-                lblIdotartam.Content = szolgaltatasIdotartamValue;
+                lblIdotartam.Content = szolgaltatasIdotartamValue + " perc";
                 readerIdotartam.Close();
                 connectionIdotartam.Close();
             }
