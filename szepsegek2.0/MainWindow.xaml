@@ -90,7 +90,7 @@
             <ComboBox x:Name="cbxSzolgaltatasok" Grid.Row="1" Grid.Column="1" Width="180" Margin="10,0,0,0" 
                       Style="{StaticResource MaterialComboBoxStyle}" />
 
-            <Label Content="Időtartam: {}" Grid.Row="1" Grid.Column="1" Margin="437,1,-437,32" Grid.RowSpan="2"/>
+            <Label x:Name="lblIdotartam" Content=""   FontSize="13" Grid.Row="1" Grid.Column="1" Margin="437,1,-437,32" Grid.RowSpan="2"/>
 
             <Label Content="Időpont:" Grid.Row="2" VerticalAlignment="Center" Foreground="#4CAF50" />
             <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">

@@ -88,6 +88,23 @@ namespace szepsegek2._0
             commandSzolgaltatas.Parameters.AddWithValue("@selectedValue", selectedValue);
             MySqlDataReader readerSzolgaltatas = commandSzolgaltatas.ExecuteReader();
 
+
+            using (MySqlConnection connectionIdotartam = new MySqlConnection(connectionString))
+            {
+                connectionIdotartam.Open();
+
+                MySqlCommand commandIdotartam = new MySqlCommand("SELECT SzolgaltatasIdotartam FROM szolgaltatasok", connectionIdotartam);
+                MySqlDataReader readerIdotartam = commandIdotartam.ExecuteReader();
+
+                while (readerIdotartam.Read())
+                {
+                    // Assuming SzolgaltatasIdotartam is a string column
+                    string szolgaltatasIdotartamValue = readerIdotartam["SzolgaltatasIdotartam"].ToString();
+
+                    // Bind the value to a variable or control
+                    lblIdotartam.Content = szolgaltatasIdotartamValue;
+                }
+            }
             while (readerSzolgaltatas.Read())
             {
                 cbxSzolgaltatasok.Items.Add(readerSzolgaltatas["SzolgaltatasKategoria"].ToString());
@@ -98,7 +115,7 @@ namespace szepsegek2._0
             readerSzolgaltatas.Close();
             connectionSzolgaltatas.Close();
         }
-
+    
         private void btnFoglal_Click(object sender, RoutedEventArgs e)
         {
             const int nyitas = 8;
