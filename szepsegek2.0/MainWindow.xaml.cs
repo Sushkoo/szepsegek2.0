@@ -13,6 +13,8 @@ using System.Data.SqlClient;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using Xceed.Wpf.Toolkit;
+using System.Reflection.PortableExecutable;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace szepsegek2._0
 {
@@ -130,16 +132,28 @@ namespace szepsegek2._0
                         connection.Close();
 
                         System.Windows.MessageBox.Show("Foglalás rögzítve!");
-                        Foglalas ujFoglalas = new Foglalas()
+
+                        MySqlConnection connectionDatagrid = new MySqlConnection(connectionString);
+                        connectionDatagrid.Open();
+
+                        string queryDatagrid = "SELECT foglalasok.FoglalasID, foglalasok.Ido, foglalasok.OraPerc, dolgozok.DolgozoKeresztNev, szolgaltatasok.SzolgaltatasKategoria FROM foglalasok INNER JOIN dolgozok ON dolgozok.DolgozoID = foglalasok.DolgozoID INNER JOIN szolgaltatasok ON szolgaltatasok.SzolgaltatasID = foglalasok.SzolgaltatasID";
+                        MySqlCommand commandDatagrid = new MySqlCommand(queryDatagrid, connectionDatagrid);
+                        MySqlDataReader readerDatagrid = commandDatagrid.ExecuteReader();
+
+                        while (readerDatagrid.Read())
                         {
-                            FoglalasID = foglalsID,
-                            DolgozoID = int.Parse(dolgozoID),
-                            SzolgaltatasID = int.Parse(szolgaltatasID),
-                            Ido = selectedDateTime.ToString("yyyy-MM-dd"),
-                            OraPerc = oraperc 
-                        };
-                        foglalsID++;
-                        dtgSource.Add(ujFoglalas);
+                            Foglalas ujFoglalas = new Foglalas()
+                            {
+                                FoglalasID = readerDatagrid.GetInt32("FoglalasID"),
+                                DolgozoID = readerDatagrid.GetString("DolgozoKeresztNev"),
+                                SzolgaltatasID = readerDatagrid.GetString("SzolgaltatasKategoria"),
+                                Ido = readerDatagrid.GetString("Ido"),
+                                OraPerc = readerDatagrid.GetString("OraPerc")
+                            };
+                            dtgSource.Add(ujFoglalas);
+                        }
+                        readerDatagrid.Close();
+                        connectionDatagrid.Close();
                     }
                 }
                 else
