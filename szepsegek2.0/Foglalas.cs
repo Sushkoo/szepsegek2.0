@@ -9,8 +9,8 @@ namespace szepsegek2._0
     public class Foglalas
     {
         public int FoglalasID { get; set; }
-        public int SzolgaltatasID { get; set; }
-        public int DolgozoID { get; set; }
+        public string SzolgaltatasID { get; set; }
+        public string DolgozoID { get; set; }
         public string Ido {  get; set; }
         public string OraPerc {  get; set; }
     }
