@@ -89,7 +89,9 @@
             <Label Content="Szolgáltatás:" Grid.Row="1" VerticalAlignment="Center" Foreground="#F44336" />
             <ComboBox x:Name="cbxSzolgaltatasok" Grid.Row="1" Grid.Column="1" Width="180" Margin="10,0,0,0" 
                       Style="{StaticResource MaterialComboBoxStyle}" />
-            
+
+            <Label Content="Időtartam: {}" Grid.Row="1" Grid.Column="1" Margin="437,1,-437,32" Grid.RowSpan="2"/>
+
             <Label Content="Időpont:" Grid.Row="2" VerticalAlignment="Center" Foreground="#4CAF50" />
             <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
                 <DatePicker x:Name="dtpIdopont" Width="180" Margin="10,0,0,0" 
@@ -102,7 +104,7 @@
         <Button x:Name="btnFoglal" Content="Foglalás" Grid.Row="4" Grid.ColumnSpan="3" HorizontalAlignment="Center" Width="120" 
                 Margin="0,20,0,0" Background="#8BC34A" Foreground="White" FontSize="16" FontWeight="Bold" Padding="10,5" BorderThickness="0" Cursor="Hand"
                 Style="{StaticResource MaterialButtonStyle}" Click="btnFoglal_Click"/>
-   
+
         <!-- DataGrid section -->
         <DataGrid x:Name="dtgFoglalasok" Grid.Row="5" Grid.ColumnSpan="3" Margin="20" 
                   Style="{StaticResource MaterialDataGridStyle}" IsReadOnly="True"/>
