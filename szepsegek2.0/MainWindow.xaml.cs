@@ -107,18 +107,16 @@ namespace szepsegek2._0
                 connectionIdotartam.Open();
 
                 string selectedDolgozo = cbxDolgozok.SelectedItem.ToString();
-
-                MySqlCommand commandIdotartam = new MySqlCommand("SELECT szolgaltatasok.SzolgaltatasIdotartam FROM dolgozok INNER JOIN szolgaltatasok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID", connectionIdotartam);
+                System.Windows.MessageBox.Show(selectedDolgozo);
+                MySqlCommand commandIdotartam = new MySqlCommand("SELECT szolgaltatasok.SzolgaltatasIdotartam FROM dolgozok INNER JOIN szolgaltatasok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID WHERE dolgozok.DolgozoKeresztNev = @selectedDolgozo", connectionIdotartam);
                 MySqlDataReader readerIdotartam = commandIdotartam.ExecuteReader();
-
+                string szolgaltatasIdotartamValue = "";
                 while (readerIdotartam.Read())
                 {
-                    // Assuming SzolgaltatasIdotartam is a string column
-                    string szolgaltatasIdotartamValue = readerIdotartam["SzolgaltatasIdotartam"].ToString();
-
-                    // Bind the value to a variable or control
-                    lblIdotartam.Content = szolgaltatasIdotartamValue;
+                    szolgaltatasIdotartamValue = readerIdotartam["SzolgaltatasIdotartam"].ToString();
                 }
+
+                lblIdotartam.Content = szolgaltatasIdotartamValue;
                 readerIdotartam.Close();
                 connectionIdotartam.Close();
             }
