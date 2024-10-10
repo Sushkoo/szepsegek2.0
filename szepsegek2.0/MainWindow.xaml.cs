@@ -138,10 +138,6 @@ namespace szepsegek2._0
             //temporary data
             int szolgaltatasIdotartam = 120;
 
-
-
-
-
             int szolgaltatasVege = selectedHourEsPerc + szolgaltatasIdotartam;
 
             int szolgaltatasVegeOraban = szolgaltatasVege / 60;
