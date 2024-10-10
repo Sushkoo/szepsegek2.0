@@ -107,7 +107,7 @@ namespace szepsegek2._0
                 connectionIdotartam.Open();
 
                 string selectedDolgozo = cbxDolgozok.SelectedItem.ToString();
-                System.Windows.MessageBox.Show(selectedDolgozo);
+
                 MySqlCommand commandIdotartam = new MySqlCommand("SELECT szolgaltatasok.SzolgaltatasIdotartam FROM dolgozok INNER JOIN szolgaltatasok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID WHERE dolgozok.DolgozoKeresztNev = @selectedDolgozo", connectionIdotartam);
                 commandIdotartam.Parameters.AddWithValue("@selectedDolgozo", selectedDolgozo);
                 MySqlDataReader readerIdotartam = commandIdotartam.ExecuteReader();
