@@ -169,7 +169,7 @@ namespace szepsegek2._0
                         return;
                     }
                 }
-
+                //szar a git
                 DateTime? selectedDate = dtpIdopont.SelectedDate;
 
                 if (selectedDate.HasValue)
