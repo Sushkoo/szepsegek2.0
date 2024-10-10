@@ -145,8 +145,10 @@ namespace szepsegek2._0
 
             int szolgaltatasVege = selectedHourEsPerc + szolgaltatasIdotartam;
 
-            int szolgaltatasVegeOraban = szolgaltatasVege
+            int szolgaltatasVegeOraban = szolgaltatasVege / 60;
+            int szolgaltatasVegePercben = szolgaltatasVege % 60;
 
+            //ezeket osszeadni es kiirni 
 
 
             string oraperc = selectedHour.ToString() + ":" + selectedMinute.ToString();
