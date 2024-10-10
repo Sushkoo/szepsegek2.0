@@ -106,7 +106,9 @@ namespace szepsegek2._0
             {
                 connectionIdotartam.Open();
 
-                MySqlCommand commandIdotartam = new MySqlCommand("SELECT SzolgaltatasIdotartam FROM szolgaltatasok", connectionIdotartam);
+                string selectedSzolgaltatas = cbxSzolgaltatasok.SelectedItem.ToString();
+
+                MySqlCommand commandIdotartam = new MySqlCommand("SELECT SzolgaltatasIdotartam FROM szolgaltatasok WHERE SzolgaltatasKategoria = @selectedSzolgaltatas", connectionIdotartam);
                 MySqlDataReader readerIdotartam = commandIdotartam.ExecuteReader();
 
                 while (readerIdotartam.Read())
@@ -117,6 +119,8 @@ namespace szepsegek2._0
                     // Bind the value to a variable or control
                     lblIdotartam.Content = szolgaltatasIdotartamValue;
                 }
+                readerIdotartam.Close();
+                connectionIdotartam.Close();
             }
         }
 
