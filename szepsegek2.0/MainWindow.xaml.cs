@@ -108,7 +108,7 @@ namespace szepsegek2._0
 
                 string selectedDolgozo = cbxDolgozok.SelectedItem.ToString();
 
-                MySqlCommand commandIdotartam = new MySqlCommand("SELECT szolgaltatasok.SzolgaltatasIdotartam FROM szolgaltatasok INNER JOIN dolgozok ON dolgozok.SzolgaltatasID = szolgaltatasok.DolgozoID WHERE dolgozok.DolgozoKeresztNev = @selectedDolgozo", connectionIdotartam);
+                MySqlCommand commandIdotartam = new MySqlCommand("SELECT szolgaltatasok.SzolgaltatasIdotartam FROM dolgozok INNER JOIN szolgaltatasok ON dolgozok.SzolgaltatasID = szolgaltatasok.DolgozoID WHERE dolgozok.DolgozoKeresztNev = @selectedDolgozo", connectionIdotartam);
                 MySqlDataReader readerIdotartam = commandIdotartam.ExecuteReader();
 
                 while (readerIdotartam.Read())
