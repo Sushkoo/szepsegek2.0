@@ -129,9 +129,19 @@ namespace szepsegek2._0
             int selectedMinute = dtudOra.Value.Value.Minute;
 
             int selectedHourPercben = selectedHour * 60;
-            int selectedMinute;
 
-            int szolgaltatasVege = 
+            int selectedHourEsPerc = selectedHourPercben + selectedMinute;
+
+            //temporary data
+            int szolgaltatasIdotartam = 120;
+
+
+
+
+
+            int szolgaltatasVege = selectedHourEsPerc + szolgaltatasIdotartam;
+
+            int szolgaltatasVegeOraban = szolgaltatasVege
 
 
 
@@ -144,10 +154,10 @@ namespace szepsegek2._0
             }
             else
             {
-                if ()
+                /*if ()
                 {
                     
-                }
+                }*/
 
 
                 foreach (var item in dtgSource)
