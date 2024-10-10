@@ -70,7 +70,7 @@ namespace szepsegek2._0
                     Ido = readerDatagrid.GetString("Ido"),
                     OraPerc = readerDatagrid.GetString("OraPerc")
                 };
-                
+
             }
             dtgSource.Add(ujFoglalas);
             readerDatagrid.Close();
@@ -128,39 +128,39 @@ namespace szepsegek2._0
             const int nyitas = 8;
             const int zaras = 15;
             const int zarasperc = 50;
-            int selectedHour = dtudOra.Value.Value.Hour;     
+            int selectedHour = dtudOra.Value.Value.Hour;
             int selectedMinute = dtudOra.Value.Value.Minute;
 
+            int selectedHourPercben = selectedHour * 60;
 
+            int selectedHourEsPerc = selectedHourPercben + selectedMinute;
 
+            //temporary data
+            int szolgaltatasIdotartam = 120;
 
             int szolgaltatasVege = selectedHourEsPerc + szolgaltatasIdotartam;
 
-            }
-        }
-        private void dtpIdopont_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            dtudOra.Visibility = Visibility.Visible;
-        }
+            int szolgaltatasVegeOraban = szolgaltatasVege / 60;
+            int szolgaltatasVegePercben = szolgaltatasVege % 60;
+
+            //ezeket osszeadni es kiirni 
 
 
+            string oraperc = selectedHour.ToString() + ":" + selectedMinute.ToString();
 
-        public bool EllenorizZarva(int SelectedHour, int SelectedMinute, int szolgaltatasIdotartamValue, int zaras, int zarasperc)
-        {
-            
-            int selectedTimeInSeconds = SelectedHour * 3600 + SelectedMinute * 60;
-
-            int zarvaInSeconds = zaras * 3600 + zarasperc * 60;
-
-            int szolgaltatasIdotartamInSeconds = szolgaltatasIdotartamValue * 60; 
-
-            if (selectedTimeInSeconds + szolgaltatasIdotartamInSeconds > zarvaInSeconds)
+            if (selectedHour <= nyitas || selectedHour >= zaras && selectedMinute >= zarasperc || selectedHour >= zaras)
             {
-                System.Windows.MessageBox.Show("Túlhaladja a záróidőt.");
-                return true;
+                System.Windows.MessageBox.Show("Figyeld a nyitvatartast!!!!!!");
+                return;
             }
             else
             {
+                /*if ()
+                {
+                    
+                }*/
+
+
                 foreach (var item in dtgSource)
                 {
                     if (item.DolgozoID.ToString() == dolgozoID && item.OraPerc == oraperc)
@@ -216,8 +216,11 @@ namespace szepsegek2._0
                 {
                     System.Windows.MessageBox.Show("Válaszd ki a szolgáltatást!");
                 }
-                return false;
             }
+        }
+        private void dtpIdopont_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dtudOra.Visibility = Visibility.Visible;
         }
     }
 }
