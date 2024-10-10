@@ -38,26 +38,19 @@ namespace szepsegek2._0
 
         public void LoadFromDB()
         {
+            string queryDolgozo = "SELECT DISTINCT DolgozoKeresztNev, DolgozoID FROM dolgozok";
 
-            // Replace with your query
-            if (dtgFoglalasok.Items.Count > 0)
+            MySqlConnection connectionDolgozo = new MySqlConnection(connectionString);
+            connectionDolgozo.Open();
+            MySqlCommand commandDolgozo = new MySqlCommand(queryDolgozo, connectionDolgozo);
+            MySqlDataReader readerDolgozo = commandDolgozo.ExecuteReader();
+
+            while (readerDolgozo.Read())
             {
-
-            
-                string queryDolgozo = "SELECT DISTINCT DolgozoKeresztNev, DolgozoID FROM dolgozok";
-
-                MySqlConnection connectionDolgozo = new MySqlConnection(connectionString);
-                connectionDolgozo.Open();
-                MySqlCommand commandDolgozo = new MySqlCommand(queryDolgozo, connectionDolgozo);
-                MySqlDataReader readerDolgozo = commandDolgozo.ExecuteReader();
-
-                while (readerDolgozo.Read())
-                {
-                    cbxDolgozok.Items.Add(readerDolgozo["DolgozoKeresztNev"].ToString());
-                }
-                readerDolgozo.Close();
-                connectionDolgozo.Close();
+                cbxDolgozok.Items.Add(readerDolgozo["DolgozoKeresztNev"].ToString());
             }
+            readerDolgozo.Close();
+            connectionDolgozo.Close();
 
             MySqlConnection connectionDatagrid = new MySqlConnection(connectionString);
             connectionDatagrid.Open();
@@ -65,10 +58,11 @@ namespace szepsegek2._0
             string queryDatagrid = "SELECT foglalasok.FoglalasID, foglalasok.Ido, foglalasok.OraPerc, dolgozok.DolgozoKeresztNev, szolgaltatasok.SzolgaltatasKategoria FROM foglalasok INNER JOIN dolgozok ON dolgozok.DolgozoID = foglalasok.DolgozoID INNER JOIN szolgaltatasok ON szolgaltatasok.SzolgaltatasID = foglalasok.SzolgaltatasID";
             MySqlCommand commandDatagrid = new MySqlCommand(queryDatagrid, connectionDatagrid);
             MySqlDataReader readerDatagrid = commandDatagrid.ExecuteReader();
+            Foglalas ujFoglalas = new();
 
             while (readerDatagrid.Read())
             {
-                Foglalas ujFoglalas = new Foglalas()
+                ujFoglalas = new Foglalas()
                 {
                     FoglalasID = readerDatagrid.GetInt32("FoglalasID"),
                     DolgozoID = readerDatagrid.GetString("DolgozoKeresztNev"),
@@ -76,8 +70,9 @@ namespace szepsegek2._0
                     Ido = readerDatagrid.GetString("Ido"),
                     OraPerc = readerDatagrid.GetString("OraPerc")
                 };
-                dtgSource.Add(ujFoglalas);
+                
             }
+            dtgSource.Add(ujFoglalas);
             readerDatagrid.Close();
             connectionDatagrid.Close();
         }
