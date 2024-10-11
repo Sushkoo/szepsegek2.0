@@ -128,12 +128,6 @@
         <!-- DataGrid section -->
         <DataGrid x:Name="dtgFoglalasok" Grid.Row="5" Grid.ColumnSpan="3" Margin="20" 
                   Style="{StaticResource MaterialDataGridStyle}" IsReadOnly="True" ColumnWidth="*">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="FoglalasID" Binding="{Binding FoglalasID}" Width="*"/>
-                <DataGridTextColumn Header="DolgozoID" Binding="{Binding DolgozoID}" Width="*"/>
-                <DataGridTextColumn Header="Ido" Binding="{Binding Ido}" Width="*"/>
-                <DataGridTextColumn Header="OraPerc" Binding="{Binding OraPerc}" Width="*"/>
-            </DataGrid.Columns>
         </DataGrid>
 
         <Grid.Background>
