@@ -52,8 +52,8 @@ namespace szepsegek2._0
                     Ido = readerDatagrid.GetString("Ido"),
                     OraPerc = readerDatagrid.GetString("OraPerc")
                 };
+                dtgSource.Add(ujFoglalas);
             }
-            dtgSource.Add(ujFoglalas);
             readerDatagrid.Close();
             connectionDatagrid.Close();
             dtgFoglalasok.ItemsSource = dtgSource;
