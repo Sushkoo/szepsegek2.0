@@ -75,7 +75,6 @@ namespace szepsegek2._0
                     Ido = readerDatagrid.GetString("Ido"),
                     OraPerc = readerDatagrid.GetString("OraPerc")
                 };
-                LoadFromDB();
             }
             dtgSource.Add(ujFoglalas);
             readerDatagrid.Close();
@@ -146,10 +145,17 @@ namespace szepsegek2._0
             {
                 foreach (var item in dtgSource)
                 {
-                    if (item.DolgozoID.ToString() == dolgozoID && item.OraPerc == oraperc)
+                    if (item.DolgozoID == null)
                     {
-                        System.Windows.MessageBox.Show("Már van foglalás erre az időpontra!");
-                        return;
+                        continue; 
+                    }
+                    else
+                    {
+                        if (item.DolgozoID.ToString() == dolgozoID && item.OraPerc == oraperc)
+                        {
+                            System.Windows.MessageBox.Show("Már van foglalás erre az időpontra!");
+                            return;
+                        }
                     }
                 }
                 //szar a git
