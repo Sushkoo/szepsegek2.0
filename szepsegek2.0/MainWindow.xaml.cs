@@ -130,7 +130,7 @@ namespace szepsegek2._0
             int selectedMinute = dtudOra.Value.Value.Minute;
             string oraperc = selectedHour.ToString() + ":" + selectedMinute.ToString();
 
-            if (selectedHour <= nyitas || selectedHour >= zaras && selectedMinute >= zarasperc || selectedHour >= zaras)
+            if (selectedHour < nyitas || selectedHour >= zaras && selectedMinute >= zarasperc || selectedHour >= zaras)
             {
                 System.Windows.MessageBox.Show("Figyeld a nyitvatartast!!!!!!");
                 return;
