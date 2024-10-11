@@ -78,7 +78,7 @@
 
         <!-- Header section -->
         <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,20,0,20" Background="#8BC34A">
-            <Label Content="Gypsy barbershop, Nyitvatartás: 8:00 - 15:50" FontSize="24" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Top" FlowDirection="RightToLeft"></Label>
+            <Label Content="Cigaszalon, Nyitvatartás: 8:00 - 15:50" FontSize="24" FontWeight="Bold" Foreground="#FFFFFF" VerticalAlignment="Top" FlowDirection="RightToLeft"></Label>
         </StackPanel>
 
         <!-- Form section -->
