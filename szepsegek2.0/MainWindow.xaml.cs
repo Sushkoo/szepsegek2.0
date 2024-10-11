@@ -223,19 +223,5 @@ namespace szepsegek2._0
         {
             dtudOra.Visibility = Visibility.Visible;
         }
-
-        private bool IsOccupiedDate(DateTime selectedDate, string selectedTime, string dolgozoID)
-        {
-            foreach (var item in dtgSource)
-            {
-                if (item.DolgozoID == dolgozoID && item.Ido == selectedDate.ToString("yyyy-MM-dd") && item.OraPerc == selectedTime)
-                {
-                    return true;
-                }
-            }
-
-
-            return false;
-        }
     }
 }
