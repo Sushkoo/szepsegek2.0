@@ -30,7 +30,21 @@ namespace szepsegek2._0
         public MainWindow()
         {
             InitializeComponent();
-            LoadFromDB();
+
+            string queryDolgozo = "SELECT DISTINCT DolgozoKeresztNev, DolgozoID FROM dolgozok";
+
+            MySqlConnection connectionDolgozo = new MySqlConnection(connectionString);
+            connectionDolgozo.Open();
+            MySqlCommand commandDolgozo = new MySqlCommand(queryDolgozo, connectionDolgozo);
+            MySqlDataReader readerDolgozo = commandDolgozo.ExecuteReader();
+
+            while (readerDolgozo.Read())
+            {
+                cbxDolgozok.Items.Add(readerDolgozo["DolgozoKeresztNev"].ToString());
+            }
+            readerDolgozo.Close();
+            connectionDolgozo.Close();
+
             cbxDolgozok.SelectionChanged += cbxDolgozok_SelectionChanged;
             cbxSzolgaltatasok.SelectionChanged += cbxSzolgaltatasok_SelectionChanged;
 
@@ -56,25 +70,10 @@ namespace szepsegek2._0
             }
             readerDatagrid.Close();
             connectionDatagrid.Close();
+
             dtgFoglalasok.ItemsSource = dtgSource;
         }
 
-        public void LoadFromDB()
-        {
-            string queryDolgozo = "SELECT DISTINCT DolgozoKeresztNev, DolgozoID FROM dolgozok";
-
-            MySqlConnection connectionDolgozo = new MySqlConnection(connectionString);
-            connectionDolgozo.Open();
-            MySqlCommand commandDolgozo = new MySqlCommand(queryDolgozo, connectionDolgozo);
-            MySqlDataReader readerDolgozo = commandDolgozo.ExecuteReader();
-
-            while (readerDolgozo.Read())
-            {
-                cbxDolgozok.Items.Add(readerDolgozo["DolgozoKeresztNev"].ToString());
-            }
-            readerDolgozo.Close();
-            connectionDolgozo.Close();
-        }
         private void cbxDolgozok_SelectionChanged(object sender, EventArgs e)
         {
             string selectedValue = cbxDolgozok.SelectedItem.ToString();
