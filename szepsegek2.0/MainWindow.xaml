@@ -107,13 +107,6 @@
 
         <!-- DataGrid section -->
         <DataGrid x:Name="dtgFoglalasok" Grid.Row="5" Grid.ColumnSpan="3" Margin="20" 
-          Style="{StaticResource MaterialDataGridStyle}" IsReadOnly="True" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="FoglalasID" Binding="{Binding FoglalasID}"/>
-                <DataGridTextColumn Header="DolgozoID" Binding="{Binding DolgozoID}"/>
-                <DataGridTextColumn Header="Ido" Binding="{Binding Ido}"/>
-                <DataGridTextColumn Header="OraPerc" Binding="{Binding OraPerc}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+                  Style="{StaticResource MaterialDataGridStyle}" IsReadOnly="True"/>
     </Grid>
 </Window>
