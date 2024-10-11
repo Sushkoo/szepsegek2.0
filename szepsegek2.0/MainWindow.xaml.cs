@@ -137,19 +137,22 @@ namespace szepsegek2._0
             else
             {
                 DateTime? selectedDate = dtpIdopont.SelectedDate;
-                foreach (var item in dtgSource)
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    if (item.DolgozoID == null)
+                    connection.Open();
+
+                    MySqlCommand command = new MySqlCommand("SELECT * FROM foglalasok WHERE DolgozoID = @dolgozoID AND Ido = @selectedDate AND OraPerc = @oraperc", connection);
+                    command.Parameters.AddWithValue("@dolgozoID", int.Parse(dolgozoID));
+                    command.Parameters.AddWithValue("@selectedDate", selectedDate.Value.ToString("yyyy-MM-dd"));
+                    command.Parameters.AddWithValue("@oraperc", oraperc);
+
+                    MySqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
                     {
-                        continue; 
-                    }
-                    else
-                    {
-                        if (item.DolgozoID.ToString() == dolgozoID && item.OraPerc == oraperc || item.Ido==selectedDate.Value.ToString() && item.DolgozoID.ToString() == dolgozoID)
-                        {
-                            System.Windows.MessageBox.Show("Már van foglalás erre az időpontra!");
-                            return;
-                        }
+                        System.Windows.MessageBox.Show("Már van foglalás erre az időpontra!");
+                        return;
                     }
                 }
 
