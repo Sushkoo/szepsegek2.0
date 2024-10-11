@@ -106,7 +106,8 @@
                 Style="{StaticResource MaterialButtonStyle}" Click="btnFoglal_Click"/>
 
         <!-- DataGrid section -->
-        <DataGrid x:Name="dtgFoglalasok" AutoGenerateColumns="False">
+        <DataGrid x:Name="dtgFoglalasok" Grid.Row="5" Grid.ColumnSpan="3" Margin="20" 
+          Style="{StaticResource MaterialDataGridStyle}" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="FoglalasID" Binding="{Binding FoglalasID}"/>
                 <DataGridTextColumn Header="DolgozoID" Binding="{Binding DolgozoID}"/>
