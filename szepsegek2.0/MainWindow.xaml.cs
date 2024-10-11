@@ -137,6 +137,7 @@ namespace szepsegek2._0
             }
             else
             {
+                DateTime? selectedDate = dtpIdopont.SelectedDate;
                 foreach (var item in dtgSource)
                 {
                     if (item.DolgozoID == null)
@@ -145,15 +146,13 @@ namespace szepsegek2._0
                     }
                     else
                     {
-                        if (item.DolgozoID.ToString() == dolgozoID && item.OraPerc == oraperc)
+                        if (item.DolgozoID.ToString() == dolgozoID && item.OraPerc == oraperc || item.Ido==selectedDate.Value.ToString() && item.DolgozoID.ToString() == dolgozoID)
                         {
                             System.Windows.MessageBox.Show("Már van foglalás erre az időpontra!");
                             return;
                         }
                     }
                 }
-                //szar a git
-                DateTime? selectedDate = dtpIdopont.SelectedDate;
 
                 if (selectedDate.HasValue)
                 {
@@ -224,6 +223,20 @@ namespace szepsegek2._0
         private void dtpIdopont_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             dtudOra.Visibility = Visibility.Visible;
+        }
+
+        private bool IsOccupiedDate(DateTime selectedDate, string selectedTime, string dolgozoID)
+        {
+            foreach (var item in dtgSource)
+            {
+                if (item.DolgozoID == dolgozoID && item.Ido == selectedDate.ToString("yyyy-MM-dd") && item.OraPerc == selectedTime)
+                {
+                    return true;
+                }
+            }
+
+
+            return false;
         }
     }
 }
