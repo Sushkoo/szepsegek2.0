@@ -56,32 +56,30 @@ namespace szepsegek2._0
                 connectionDolgozo.Close();
                 counter++;
             }
-            else
+
+            MySqlConnection connectionDatagrid = new MySqlConnection(connectionString);
+            connectionDatagrid.Open();
+
+            string queryDatagrid = "SELECT foglalasok.FoglalasID, foglalasok.Ido, foglalasok.OraPerc, dolgozok.DolgozoKeresztNev, szolgaltatasok.SzolgaltatasKategoria FROM foglalasok INNER JOIN dolgozok ON dolgozok.DolgozoID = foglalasok.DolgozoID INNER JOIN szolgaltatasok ON szolgaltatasok.SzolgaltatasID = foglalasok.SzolgaltatasID";
+            MySqlCommand commandDatagrid = new MySqlCommand(queryDatagrid, connectionDatagrid);
+            MySqlDataReader readerDatagrid = commandDatagrid.ExecuteReader();
+            Foglalas ujFoglalas = new();
+
+            while (readerDatagrid.Read())
             {
-                MySqlConnection connectionDatagrid = new MySqlConnection(connectionString);
-                connectionDatagrid.Open();
-
-                string queryDatagrid = "SELECT foglalasok.FoglalasID, foglalasok.Ido, foglalasok.OraPerc, dolgozok.DolgozoKeresztNev, szolgaltatasok.SzolgaltatasKategoria FROM foglalasok INNER JOIN dolgozok ON dolgozok.DolgozoID = foglalasok.DolgozoID INNER JOIN szolgaltatasok ON szolgaltatasok.SzolgaltatasID = foglalasok.SzolgaltatasID";
-                MySqlCommand commandDatagrid = new MySqlCommand(queryDatagrid, connectionDatagrid);
-                MySqlDataReader readerDatagrid = commandDatagrid.ExecuteReader();
-                Foglalas ujFoglalas = new();
-
-                while (readerDatagrid.Read())
+                ujFoglalas = new Foglalas()
                 {
-                    ujFoglalas = new Foglalas()
-                    {
-                        FoglalasID = readerDatagrid.GetInt32("FoglalasID"),
-                        DolgozoID = readerDatagrid.GetString("DolgozoKeresztNev"),
-                        SzolgaltatasID = readerDatagrid.GetString("SzolgaltatasKategoria"),
-                        Ido = readerDatagrid.GetString("Ido"),
-                        OraPerc = readerDatagrid.GetString("OraPerc")
-                    };
+                    FoglalasID = readerDatagrid.GetInt32("FoglalasID"),
+                    DolgozoID = readerDatagrid.GetString("DolgozoKeresztNev"),
+                    SzolgaltatasID = readerDatagrid.GetString("SzolgaltatasKategoria"),
+                    Ido = readerDatagrid.GetString("Ido"),
+                    OraPerc = readerDatagrid.GetString("OraPerc")
+                };
 
-                }
-                dtgSource.Add(ujFoglalas);
-                readerDatagrid.Close();
-                connectionDatagrid.Close();
             }
+            dtgSource.Add(ujFoglalas);
+            readerDatagrid.Close();
+            connectionDatagrid.Close();
         }
         private void cbxDolgozok_SelectionChanged(object sender, EventArgs e)
         {
