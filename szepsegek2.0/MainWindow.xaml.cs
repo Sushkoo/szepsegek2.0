@@ -38,8 +38,8 @@ namespace szepsegek2._0
 
         public void LoadFromDB()
         {
-            int counter = 0;
-            if (counter == 0)
+            bool miafasz = true;
+            if (miafasz)
             {
                 string queryDolgozo = "SELECT DISTINCT DolgozoKeresztNev, DolgozoID FROM dolgozok";
 
@@ -54,7 +54,7 @@ namespace szepsegek2._0
                 }
                 readerDolgozo.Close();
                 connectionDolgozo.Close();
-                counter++;
+                miafasz = false;
             }
 
             MySqlConnection connectionDatagrid = new MySqlConnection(connectionString);
