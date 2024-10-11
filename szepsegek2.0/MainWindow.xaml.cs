@@ -38,52 +38,23 @@ namespace szepsegek2._0
 
         public void LoadFromDB()
         {
-            bool miafasz = true;
-            if (miafasz)
+            string queryDolgozo = "SELECT DISTINCT DolgozoKeresztNev, DolgozoID FROM dolgozok";
+
+            MySqlConnection connectionDolgozo = new MySqlConnection(connectionString);
+            connectionDolgozo.Open();
+            MySqlCommand commandDolgozo = new MySqlCommand(queryDolgozo, connectionDolgozo);
+            MySqlDataReader readerDolgozo = commandDolgozo.ExecuteReader();
+
+            while (readerDolgozo.Read())
             {
-                string queryDolgozo = "SELECT DISTINCT DolgozoKeresztNev, DolgozoID FROM dolgozok";
-
-                MySqlConnection connectionDolgozo = new MySqlConnection(connectionString);
-                connectionDolgozo.Open();
-                MySqlCommand commandDolgozo = new MySqlCommand(queryDolgozo, connectionDolgozo);
-                MySqlDataReader readerDolgozo = commandDolgozo.ExecuteReader();
-
-                while (readerDolgozo.Read())
-                {
-                    cbxDolgozok.Items.Add(readerDolgozo["DolgozoKeresztNev"].ToString());
-                }
-                readerDolgozo.Close();
-                connectionDolgozo.Close();
-                miafasz = false;
+                cbxDolgozok.Items.Add(readerDolgozo["DolgozoKeresztNev"].ToString());
             }
-
-            MySqlConnection connectionDatagrid = new MySqlConnection(connectionString);
-            connectionDatagrid.Open();
-
-            string queryDatagrid = "SELECT foglalasok.FoglalasID, foglalasok.Ido, foglalasok.OraPerc, dolgozok.DolgozoKeresztNev, szolgaltatasok.SzolgaltatasKategoria FROM foglalasok INNER JOIN dolgozok ON dolgozok.DolgozoID = foglalasok.DolgozoID INNER JOIN szolgaltatasok ON szolgaltatasok.SzolgaltatasID = foglalasok.SzolgaltatasID";
-            MySqlCommand commandDatagrid = new MySqlCommand(queryDatagrid, connectionDatagrid);
-            MySqlDataReader readerDatagrid = commandDatagrid.ExecuteReader();
-            Foglalas ujFoglalas = new();
-
-            while (readerDatagrid.Read())
-            {
-                ujFoglalas = new Foglalas()
-                {
-                    FoglalasID = readerDatagrid.GetInt32("FoglalasID"),
-                    DolgozoID = readerDatagrid.GetString("DolgozoKeresztNev"),
-                    SzolgaltatasID = readerDatagrid.GetString("SzolgaltatasKategoria"),
-                    Ido = readerDatagrid.GetString("Ido"),
-                    OraPerc = readerDatagrid.GetString("OraPerc")
-                };
-            }
-            dtgSource.Add(ujFoglalas);
-            readerDatagrid.Close();
-            connectionDatagrid.Close();
+            readerDolgozo.Close();
+            connectionDolgozo.Close();
         }
         private void cbxDolgozok_SelectionChanged(object sender, EventArgs e)
         {
             string selectedValue = cbxDolgozok.SelectedItem.ToString();
-
 
             cbxSzolgaltatasok.Items.Clear();
             string querySzolgaltatas = "SELECT szolgaltatasok.SzolgaltatasID, szolgaltatasok.Szolgaltataskategoria, dolgozok.DolgozoID FROM szolgaltatasok INNER JOIN dolgozok ON dolgozok.SzolgaltatasID = szolgaltatasok.SzolgaltatasID WHERE dolgozok.DolgozoKeresztNev = @selectedValue";
@@ -186,9 +157,29 @@ namespace szepsegek2._0
 
                         connection.Close();
 
-                        System.Windows.MessageBox.Show("Foglalás rögzítve!");
+                        MySqlConnection connectionDatagrid = new MySqlConnection(connectionString);
+                        connectionDatagrid.Open();
 
-                        LoadFromDB();
+                        string queryDatagrid = "SELECT foglalasok.FoglalasID, foglalasok.Ido, foglalasok.OraPerc, dolgozok.DolgozoKeresztNev, szolgaltatasok.SzolgaltatasKategoria FROM foglalasok INNER JOIN dolgozok ON dolgozok.DolgozoID = foglalasok.DolgozoID INNER JOIN szolgaltatasok ON szolgaltatasok.SzolgaltatasID = foglalasok.SzolgaltatasID";
+                        MySqlCommand commandDatagrid = new MySqlCommand(queryDatagrid, connectionDatagrid);
+                        MySqlDataReader readerDatagrid = commandDatagrid.ExecuteReader();
+                        Foglalas ujFoglalas = new();
+
+                        while (readerDatagrid.Read())
+                        {
+                            ujFoglalas = new Foglalas()
+                            {
+                                FoglalasID = readerDatagrid.GetInt32("FoglalasID"),
+                                DolgozoID = readerDatagrid.GetString("DolgozoKeresztNev"),
+                                SzolgaltatasID = readerDatagrid.GetString("SzolgaltatasKategoria"),
+                                Ido = readerDatagrid.GetString("Ido"),
+                                OraPerc = readerDatagrid.GetString("OraPerc")
+                            };
+                        }
+                        dtgSource.Add(ujFoglalas);
+                        readerDatagrid.Close();
+                        connectionDatagrid.Close();
+                        System.Windows.MessageBox.Show("Foglalás rögzítve!");
                     }
                 }
                 else
